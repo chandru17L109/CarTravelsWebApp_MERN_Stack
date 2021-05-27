@@ -1,0 +1,477 @@
+.MainDiv{
+  box-sizing: border-box;
+}
+
+.header2 li {
+  list-style: none;
+}
+
+.cartarvels{
+  padding-left: 20px;
+  font-size: 30px;
+  font-weight: 600;
+  font-family:cursive;
+}
+
+.carouselImg{
+  width: 100%;
+  height: 500px;
+  opacity: 0.9;
+}
+
+.homepage-second-main{
+  background-image: linear-gradient(to left,rgba(236, 241, 241, 0.637),rgb(147, 223, 204));
+  padding: 50px 0px 120px 0px;
+}
+
+.homepage-car-img-div{
+  display: flex;
+  position: relative;
+  width:47%;
+}
+
+.homepage-main-content-div{
+  display: flex;
+  height: 300px;
+}
+
+.homepage-car-main-img{
+  width: 650px;
+  height: 400px;
+}
+
+.home-main-heading{
+  position: absolute;
+  top: 10%;
+  left:10%;
+  font-size: 58px;
+  font-family:cursive;
+  font-weight:bolder;
+  color: rgb(17, 83, 55);
+  line-height: 1.5;
+}
+@media only screen and (max-width: 1220px){
+  .homepage-second-main{
+    padding: 50px 0px 100px 0px;
+  }
+  .homepage-car-img-div{
+    width:44%;
+  }
+  .homepage-car-main-img{
+    width: 450px;
+    height: 350px;
+  }
+  .home-main-heading{
+    font-size: 50px;
+  }
+}
+
+@media only screen and (max-width: 800px){
+  .homepage-second-main{
+    padding: 50px 0px 50px 0px;
+  }
+  .homepage-car-img-div{
+    width:35%;
+  }
+  .homepage-car-main-img{
+    width: 450px;
+    height: 280px;
+  }
+  .home-main-heading{
+    font-size: 38px;
+  }
+}
+
+@media only screen and (max-width: 700px){
+  .homepage-second-main{
+    padding: 50px 0px 0px 0px;
+  }
+  .homepage-car-img-div{
+    width:25%;
+  }
+  .homepage-main-content-div{
+    height: 250px;
+  }
+  .homepage-car-main-img{
+    width: 300px;
+    height: 200px;
+  }
+  .home-main-heading{
+    font-size: 25px;
+  }
+}
+
+.tourpackage,.Gallery{
+   font-family:Georgia, 'Times New Roman', Times, serif;
+   padding-top: 10px;
+   font-size: 40px;
+}
+
+.Card_Gallery{
+  width: 348px;
+  font-size: 17px;
+}
+
+.card-text{
+  line-height: 1.6em !important ;
+  margin: 5px;
+}
+
+/* .cart-body{
+  
+} */
+
+footer {
+  background-color: rgb(221, 216, 216);
+  padding: 20px;
+  width: 100%;
+}
+
+
+.linkcolor{
+  color: aliceblue;
+}
+
+.Card_Gallery_pic{
+  cursor: pointer;
+}
+.card-text{
+  line-height: 1.5;
+}
+.Card_Gallery_pic :hover{
+  transition: width 0.5s, height 0.5s;
+  width: 355px;
+  height: 220px;
+}
+
+.Gallery-slider{
+  margin: 0px 30px 50px 30px;
+}
+
+.Gallery-slider img{
+  padding: 10px;
+}
+
+.Gallery{
+  margin: 10px auto 20px 40px;
+}
+
+
+/* ----------------------------------------------- */
+
+.loginpage,
+.signuppage{
+  width: 45%;
+  margin: auto;
+  background-color: rgb(244, 245, 245);
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 5px 7px rgb(212, 212, 212);
+}
+
+.user_login_top,
+.user_signup_top{
+  width: auto;
+  height: 50px;
+  border-radius: 10px 10px 0px 0px;
+  background-image: linear-gradient(to right ,rgba(19, 67, 131, 0.568),rgb(21, 52, 134));
+}
+.user_login,
+.user_signup{
+  font-size: 30px;
+  font-weight: 700;
+  font-family:initial;
+  color: rgb(32, 35, 90);
+}
+.user_signup{
+  color: rgb(66, 21, 117);
+}
+.user_signup_top{
+  background-image: linear-gradient(to right ,rgba(110, 75, 236, 0.568),rgb(118, 45, 255)); 
+}
+.form-control:focus{
+  box-shadow: none !important;
+}
+
+form{
+  padding: 0px 40px;
+}
+
+.signup-button,
+.login-button,
+.signup-login-button,
+.login-signup-button{
+  width: 230px;
+  border: 0px;
+  border-radius: 15px 50px;
+  padding: 5px;
+  color: white;
+  font-size: 20px;
+  box-shadow: 2px 2px rgb(189, 189, 189);
+  background-image: linear-gradient(to right ,rgba(24, 91, 167, 0.568),rgb(38, 72, 165));
+}
+.signup-login-button{
+  font-size: 15px;
+  width: 180px;
+  background-image: linear-gradient(to right ,rgba(110, 75, 236, 0.568),rgb(118, 45, 255)); 
+}
+
+.signup-button{
+  background-image: linear-gradient(to right ,rgba(110, 75, 236, 0.568),rgb(118, 45, 255)); 
+}
+
+.login-signup-button{
+  background-image: linear-gradient(to right ,rgba(24, 91, 167, 0.568),rgb(38, 72, 165));
+}
+/* ---------------------------------------------------------------------- */
+.pack{
+  width: 75%;
+  margin: auto;
+}
+
+.pack :nth-child(1) :hover{
+  background-image: linear-gradient(to right,rgba(253, 253, 253, 0),rgb(162, 235, 229));
+  width: 40%;
+  transition: 0.2s;
+}
+.pack :nth-child(2) :hover{
+  background-image: linear-gradient(to left,rgba(253, 253, 253, 0),rgb(162, 235, 229));
+  width: 40%;
+  transition: 0.2s;
+}
+
+.tour-package-div,
+.local-package-div{
+  position: relative;
+  display: inline-block;
+  width:38%;
+  height: 300px;
+  padding: 10px;
+  margin: 7% 5%;
+  border-radius: 15px;
+  box-shadow: 10px 10px 10px 10px rgb(196, 202, 202);
+}
+
+
+.tour-span{
+  position: absolute;
+  top: 25%;
+  left:28%;
+  font-size: 40px;
+  color: rgb(23, 103, 117);
+  border-radius: 15px;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  
+}
+.package{
+  background-image: linear-gradient(to right,rgba(225, 235, 234, 0.486),rgb(202, 240, 231));
+}
+
+
+
+/* --------------------------------------------------------------------- */
+.new-booking-body{
+  background-image: linear-gradient(to right,rgba(236, 241, 241, 0.637),rgb(94, 225, 248));
+  padding: 50px 0px 110px 0px;
+}
+
+.car-img-div{
+  display: flex;
+  position: relative;
+  width:47%;
+}
+
+.main-content-div{
+  display: flex;
+  height: 300px;
+}
+
+.car-main-img{
+  width: 650px;
+  height: 400px;
+}
+
+.main-heading{
+  position: absolute;
+  top: 10%;
+  left:10%;
+  font-size: 58px;
+  font-family:'Times New Roman', Times, serif;
+  font-weight:bolder;
+  color: rgb(17, 76, 83);
+  line-height: 1.5;
+}
+
+.form-bg{
+  background-color: rgb(247, 245, 241);
+  background-image: url("https://png.pngtree.com/thumb_back/fh260/background/20191029/pngtree-white-acrylic-brush-background-image_320177.jpg");
+  padding: 30px;
+}
+.newbooking-loginpage{
+  width: 40%;
+  margin: auto;
+  background-color: rgb(243, 243, 243);
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 5px 7px rgb(212, 212, 212);
+}
+
+.newbooking-user_login_top{
+  width: auto;
+  height: 50px;
+  border-radius: 10px 10px 0px 0px;
+  background-image: linear-gradient(to right ,rgba(82, 177, 214, 0.568),rgb(22, 154, 206));
+}
+.newbooking-user_login{
+  font-size: 30px;
+  font-weight: 700;
+  font-family:initial;
+  color: rgb(30, 79, 124);
+}
+
+.newbooking-form{
+  padding: 0px 50px;
+}
+
+.title-font{
+  font-size: 22px;
+  font-weight: 600;
+  font-family:Arial, Helvetica, sans-serif;
+  color: rgb(27, 80, 124);
+}
+
+.popular-image-kovai{
+  background-image: linear-gradient(to left,rgba(248, 254, 255, 0.507),rgb(238, 246, 248));
+}
+
+.poupular-places{
+  width: 100%;
+  font-size: 40px;
+  font-weight: bold;
+  color: rgb(1, 54, 54);
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.love-kovai{
+  opacity: 0.9;
+}
+/* --------------------------------------------------------------------------- */
+
+
+.opacity-decide-1{
+  opacity: 0.6;
+}
+
+.img-data{
+  position: absolute;
+  margin: 30px;
+  padding: 50px 100px;
+}
+.img-data h1{
+  font-size: 60px;
+  font-weight: bold;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: rgb(4, 70, 32);
+}
+.img-data p{
+  font-size: 23px;
+  color: rgb(255, 255, 255);
+}
+.img-data button{
+  margin-top: 15px;
+  font-size: 20px;
+  padding: 10px;
+  color: rgb(42, 117, 73);
+  border-radius: 5px;
+  border: 1px solid white;
+  background-image: linear-gradient(to left,rgba(229, 238, 240, 0.507),rgb(186, 240, 204));
+}
+
+.icon-tour{
+  padding: 7px;
+}
+
+/* ---------------------------------------------------------------- */
+
+
+.confirmbooking-loginpage{
+  width: 40%;
+  margin: 40px auto;
+  background-color: rgb(247, 247, 247);
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 5px 7px 10px 10px rgb(212, 212, 212);
+}
+
+.confirmbooking-user_login_top{
+  text-align: center;
+  width: auto;
+  padding: 10px;
+  height: 70px;
+  border-radius: 10px 10px 0px 0px;
+  background-image: linear-gradient(to right ,rgba(20, 206, 82, 0.568),rgb(11, 168, 76));
+}
+.confirmbooking-user_login{
+  font-size: 30px;
+  font-weight: 700;
+  font-family:initial;
+  color: rgb(4, 80, 29);
+}
+
+.confirmbooking-form{
+  padding: 0px 50px;
+}
+
+.confirmdata{
+  margin: 20px;
+  line-height: 0.6;
+}
+
+/* .confirmfooter {
+  background-color: rgb(204, 204, 204);
+  position : absolute;
+  bottom : 0;
+  padding: 20px;
+  width: 100%;
+} */
+
+/* ------------------------------------------------------------------------------- */
+.thankyou{
+  background-image: url("https://wallpaperaccess.com/full/817605.jpg");
+  background-position: center;
+  background-size: cover;
+  text-align: center;
+  padding: 50px;
+}
+
+.thankyou h1{
+  color: rgb(41, 197, 80);
+  font-size: 60px;
+  font-weight: bold;
+}
+.thankyou i{
+  color: rgb(66, 158, 66);
+}
+.thankyou p{
+  font-size: 20px;
+}
+.thankyou h2{
+  color: rgb(21, 88, 133);
+  font-size: 40px;
+  font-weight: bold;
+}
+
+/* ----------------------------------------- */
+
+.bookinglist{
+  width: 100%;
+  font-size: 30px;
+  padding: 20px;
+  margin: 0px;
+  /* text-align: center; */
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color: rgb(97, 96, 96);
+  background-color: rgb(222, 231, 231);
+}
+
+/* ---------------------------------------------------------- */

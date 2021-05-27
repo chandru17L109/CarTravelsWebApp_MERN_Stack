@@ -1,0 +1,34 @@
+const asyncHandler = require('./asyncHandler')
+const jwt = require('jsonwebtoken');
+
+const protect =  asyncHandler(async (req, res, next)=> {
+    const authHeader = req.headers.authorization;
+    console.log("authHeader".bold,authHeader)
+    if (authHeader) {
+        const token = authHeader.split(' ')[1];
+        console.log('token after split: '.bgBlue + token);
+        let user = await jwt.verify(token, process.env.JSON_SECRET_KEY);
+        if(!user) throw new Error('Invalid token!!') 
+        console.log("user".bgBlue,user);
+        req.user = user;
+        next();
+    } else {
+        res.sendStatus(403);
+    }
+})
+
+
+const authorize_role = (...roles) => {
+    return (req, res, next)=> {
+        console.log("Allowed roles:".bold +roles)
+        console.log('User role: '.bold + req.user.role)
+        if(roles.includes(req.user.role)){
+            next();
+        }
+        else{
+            res.sendStatus(403);
+        } 
+    }
+}
+
+module.exports = {protect,authorize_role};
