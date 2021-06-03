@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import authHeader from '../services/auth-header'
+import Table from 'react-bootstrap/Table'
 
 export default class AllsignedUsers extends Component {
     constructor(){
@@ -71,11 +72,11 @@ export default class AllsignedUsers extends Component {
                     <input type="email"  ref = {this.searchinput} className="form-control m-2 " id="inputsearch" placeholder="Search By Email Id"/>
                 </div>
                 <button type="submit" className="btn btn-warning m-2" onClick={this.search.bind(this)}>Search</button>
-                <button type="submit" className="btn btn-secondary m-2" onClick={this.allbooking.bind(this)}>All Bookings</button>
+                <button type="submit" className="btn btn-secondary m-2" onClick={this.allbooking.bind(this)}>All Users</button>
                 </form>
             </div>
 
-        <table className="table table-striped">
+        <Table responsive className="table table-striped">
             <thead className="thead-dark">
                 <tr>
                     <th scope="col">#</th>
@@ -89,7 +90,7 @@ export default class AllsignedUsers extends Component {
             <tbody>
                 {FetchedData}
             </tbody>
-        </table>
+        </Table>
         </div>
     )
    }

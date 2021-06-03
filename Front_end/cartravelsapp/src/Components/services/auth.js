@@ -29,6 +29,16 @@ const finduserid = () => {
     }
 }
 
-export default {isAuthenticated,findrole,finduserid};
+const findusername = () => {
+    const token = localStorage.getItem('token');
+    if(token){
+        let decodedToken =  jwt(token);
+        return decodedToken.username;
+    }else{
+        return false;
+    }
+}
+
+export default {isAuthenticated,findrole,finduserid,findusername};
 
  // console.log("decodedTokenmailid",decodedToken)

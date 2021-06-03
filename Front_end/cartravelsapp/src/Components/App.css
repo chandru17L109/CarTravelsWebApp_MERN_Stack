@@ -1,21 +1,25 @@
 .MainDiv{
   box-sizing: border-box;
+  max-width :1400px;
+  margin: auto;
 }
 
-.header2 li {
-  list-style: none;
+.logoimg{
+  margin-top: 10px;
+  width: 60px;
+  height: 60px;
 }
 
 .cartarvels{
   padding-left: 20px;
-  font-size: 30px;
+  font-size: 50px;
   font-weight: 600;
   font-family:cursive;
 }
 
 .carouselImg{
   width: 100%;
-  height: 500px;
+  height: 600px;
   opacity: 0.9;
 }
 
@@ -50,56 +54,6 @@
   color: rgb(17, 83, 55);
   line-height: 1.5;
 }
-@media only screen and (max-width: 1220px){
-  .homepage-second-main{
-    padding: 50px 0px 100px 0px;
-  }
-  .homepage-car-img-div{
-    width:44%;
-  }
-  .homepage-car-main-img{
-    width: 450px;
-    height: 350px;
-  }
-  .home-main-heading{
-    font-size: 50px;
-  }
-}
-
-@media only screen and (max-width: 800px){
-  .homepage-second-main{
-    padding: 50px 0px 50px 0px;
-  }
-  .homepage-car-img-div{
-    width:35%;
-  }
-  .homepage-car-main-img{
-    width: 450px;
-    height: 280px;
-  }
-  .home-main-heading{
-    font-size: 38px;
-  }
-}
-
-@media only screen and (max-width: 700px){
-  .homepage-second-main{
-    padding: 50px 0px 0px 0px;
-  }
-  .homepage-car-img-div{
-    width:25%;
-  }
-  .homepage-main-content-div{
-    height: 250px;
-  }
-  .homepage-car-main-img{
-    width: 300px;
-    height: 200px;
-  }
-  .home-main-heading{
-    font-size: 25px;
-  }
-}
 
 .tourpackage,.Gallery{
    font-family:Georgia, 'Times New Roman', Times, serif;
@@ -107,8 +61,13 @@
    font-size: 40px;
 }
 
+.card_main_div{
+  max-width: 95%;
+  margin: 0% 5% 3% 3%;
+}
+
 .Card_Gallery{
-  width: 348px;
+  width: 345px;
   font-size: 17px;
 }
 
@@ -117,16 +76,11 @@
   margin: 5px;
 }
 
-/* .cart-body{
-  
-} */
-
 footer {
   background-color: rgb(221, 216, 216);
   padding: 20px;
   width: 100%;
 }
-
 
 .linkcolor{
   color: aliceblue;
@@ -138,6 +92,7 @@ footer {
 .card-text{
   line-height: 1.5;
 }
+
 .Card_Gallery_pic :hover{
   transition: width 0.5s, height 0.5s;
   width: 355px;
@@ -145,17 +100,19 @@ footer {
 }
 
 .Gallery-slider{
-  margin: 0px 30px 50px 30px;
+  width: 100%;
+  margin: auto auto 50px 40px;
 }
 
 .Gallery-slider img{
-  padding: 10px;
+  padding: 13px;
+  width: 24%;
+  height: 280px;
 }
 
 .Gallery{
   margin: 10px auto 20px 40px;
 }
-
 
 /* ----------------------------------------------- */
 
@@ -283,7 +240,7 @@ form{
 
 .main-content-div{
   display: flex;
-  height: 300px;
+  height: 340px;
 }
 
 .car-main-img{
@@ -340,13 +297,14 @@ form{
   color: rgb(27, 80, 124);
 }
 
-.popular-image-kovai{
+/* .popular-image-kovai{
   background-image: linear-gradient(to left,rgba(248, 254, 255, 0.507),rgb(238, 246, 248));
-}
+} */
 
 .poupular-places{
   width: 100%;
   font-size: 40px;
+  margin-top: 10px;
   font-weight: bold;
   color: rgb(1, 54, 54);
   font-family: Georgia, 'Times New Roman', Times, serif;
@@ -354,6 +312,15 @@ form{
 
 .love-kovai{
   opacity: 0.9;
+}
+.localtourCard {
+  margin: 10px;
+  /* padding: 10px; */
+} 
+.localtourCard img{
+  margin: 10px;
+  width: 343px;
+  height: 200px;
 }
 /* --------------------------------------------------------------------------- */
 
@@ -442,6 +409,8 @@ form{
   background-size: cover;
   text-align: center;
   padding: 50px;
+  padding-bottom: 100px;
+
 }
 
 .thankyou h1{
@@ -474,4 +443,457 @@ form{
   background-color: rgb(222, 231, 231);
 }
 
+.main_carkmdetail{
+  background-image:linear-gradient(to right, rgb(222, 245, 232), rgb(231, 231, 231));
+}
+.carkm_ptag{
+  text-align: center;
+  font-size: 35px;
+  font-family: cursive;
+  padding: 20px;
+  color: rgb(37, 83, 85);
+}
+.carkmdetail{
+  width: 65%;
+  margin: auto;
+  font-weight: 600;
+}
+
+.main_carkmdetail table{
+ color: rgb(25, 126, 14);
+ background-color: rgb(239, 245, 245);
+ box-shadow: 5px 5px 5px 5px rgb(177, 177, 177);
+}
+
+.alignbutton{
+  display: flex;
+ }
+
+ .chart{
+   margin-bottom: 20px;
+ }
 /* ---------------------------------------------------------- */
+/* ***********************MEDIA QUERY***************** */
+
+@media only screen and (max-width: 1220px){
+  .homepage-second-main{
+    padding: 50px 0px 100px 0px;
+  }
+  .homepage-car-img-div{
+    width:45%;
+  }
+  .homepage-car-main-img{
+    width: 450px;
+    height: 350px;
+  }
+  .home-main-heading{
+    font-size: 50px;
+  }
+
+  .Gallery-slider{
+    margin: auto auto 50px 10px;
+  }
+  
+  .Gallery-slider img{
+    padding: 5px;
+    width: 23%;
+    height: 250px;
+  }
+  .card_main_div{
+    max-width: 100%;
+  }
+  .Card_Gallery{
+    width: 30%;
+    font-size: 17px;
+  }
+  
+  .new-booking-body{
+    padding: 0px 0px 0px 0px;
+  }
+
+  .car-img-div{
+    width:100%;
+  }
+  .main-content-div{
+    height: 450px;
+  }
+  .car-main-img{
+    padding-top: 70px;
+    padding-left: 20%;
+    width: 85%;
+    height: 500px;
+  }
+  .main-heading{
+    position: absolute;
+    left:10%;
+    padding-top: 30px;
+    font-size: 50px;
+    line-height: 1.2;
+  }
+  .newbooking-loginpage{
+    width: 70%;
+  }
+  .title-font{
+    padding-top: 10px;
+    font-size: 20px;
+  }
+  .poupular-places{
+    width: 100%;
+    font-size: 35px;
+    margin: 3% auto 3% 5%;
+  }
+  .localtourCard img{
+    width: 350px;
+    height: 250px;
+  }
+  .carkmdetail{
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 900px){
+  
+  .homepage-second-main{
+    padding: 50px 0px 50px 0px;
+  }
+  .homepage-car-img-div{
+    width:35%;
+  }
+  .homepage-car-main-img{
+    width: 450px;
+    height: 280px;
+  }
+  .home-main-heading{
+    font-size: 38px;
+  }
+
+  .pack{
+    width: 70%;
+  }
+  
+  .tour-package-div,
+  .local-package-div{
+    height: 200px;
+    padding: 30px;
+    margin: 15% 5%;
+  }
+  
+  .tour-span{
+    top: 15%;
+    left:15%;
+    font-size: 35px;    
+  }
+  .Card_Gallery{
+    width: 70%;
+    font-size: 18px;
+  }
+  
+  .card-text{
+    line-height: 1.5em !important ;
+    margin: 0px;
+  }
+
+  .card_main_div{
+    width: 100%;
+    margin: 0%;
+  }
+  .localtourCard{
+    padding-right: 20px;
+  }
+  .localtourCard img{
+    width: 450px;
+    margin-left:20%;
+    height: 250px;
+  }
+  .carkmdetail{
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 768px){
+  .carouselImg{
+    height: 350px;
+  }
+  .homepage-second-main{
+    padding: 50px 0px 0px 30px;
+  }
+  .homepage-car-img-div{
+    width:50%;
+  }
+  .homepage-main-content-div{
+    height: 250px;
+  }
+  .homepage-car-main-img{
+    width: 200px;
+    height: 220px;
+  }
+  .home-main-heading{
+    font-size: 30px;
+  }
+
+  .pack{
+    width: 70%;
+  }
+  
+  .tour-package-div,
+  .local-package-div{
+    height: 150px;
+    padding: 30px;
+    margin: 15% 5%;
+  }
+  
+  .tour-span{
+    top: 15%;
+    left:10%;
+    font-size: 28px;    
+  }
+
+  .Gallery-slider{
+    margin: auto auto 50px 10px;
+  }
+  
+  .Gallery-slider img{
+    padding: 5px;
+    width: 50%;
+    height: 250px;
+  }
+  .card_main_div{
+    width: 100%;
+  }  
+
+  .Card_Gallery{
+    width: 100%;
+    font-size: 17px;
+  }
+  
+  .card-text{
+    line-height: 1.4em !important ;
+    margin: 0px;
+  }
+  .loginpage,
+  .signuppage{
+   width: 70%;
+  }
+  .img-data{
+    margin: 30px;
+    padding: 30px 0px 30px 30px;
+  }
+  
+  .img-data h1{
+    font-size: 45px;
+  }
+  
+  .img-data p{
+    font-size: 20px;
+  }
+  
+  .img-data button{
+    margin-top: 35px;
+    font-size: 20px;
+    padding: 15px;
+  }
+  .new-booking-body{
+    padding: 0px 0px 0px 0px;
+  }
+  .car-img-div{
+    width:100%;
+  }
+  .main-content-div{
+    height: 400px;
+  }
+  .car-main-img{
+    padding-top: 70px;
+    padding-left: 15%;
+    width: 90%;
+    height: 400px;
+  }
+  .main-heading{
+    position: absolute;
+    left:10%;
+    padding-top: 30px;
+    font-size: 40px;
+    line-height: 1.2;
+  }
+  .newbooking-loginpage{
+    width: 80%;
+  }
+  .title-font{
+    padding-top: 10px;
+    font-size: 20px;
+  }
+  .poupular-places{
+    width: 100%;
+    font-size: 35px;
+    margin: 3% auto 3% 5%;
+  }
+  .localtourCard {
+    margin: 0%;
+    /* padding: 10px;  */
+  } 
+  .localtourCard img{
+    margin: 10px;
+    width: 443px;
+    height: 200px;
+  }
+  .carkmdetail{
+    width: 100%;
+  }
+ 
+}
+
+@media only screen and (max-width: 480px){
+  .logoimg{
+    margin-top: 5px;
+    width: 35px;
+    height: 35px;
+  }
+  .homepage-second-main{
+    padding: 40px 0px 0px 30px;
+  }
+  .homepage-car-img-div{
+    width:55%;
+  }
+  .homepage-main-content-div{
+    height: 200px;
+  }
+  .homepage-car-main-img{
+    width: 130px;
+    height: 150px;
+  }
+  .home-main-heading{
+    font-size: 20px;
+  }
+
+  .cartarvels{
+    font-size: 30px;
+  }
+  
+  .carouselImg{
+    height: 350px;
+  }
+
+  .pack{
+    width: 90%;
+  }
+  
+  .tour-package-div,
+  .local-package-div{
+    height: 100px;
+    padding: 30px;
+    margin: 15% 5%;
+  }
+  .tour-span{
+    top: 15%;
+    left:10%;
+    font-size: 20px;    
+  }
+
+  .tourpackage,.Gallery{
+    font-size: 30px;
+ }
+ 
+ .Card_Gallery{
+   font-size: 15px;
+   width: 100%;
+ }
+ 
+ .card-text{
+   line-height: 1.4em !important ;
+ }
+ 
+ .Gallery-slider{
+   margin: auto auto 50px 10px;
+ }
+ 
+ .Gallery-slider img{
+   padding: 10px;
+   width: 170px;
+   height: 150px;
+ }
+ 
+ .Gallery{
+   margin: 0px auto 20px 20px;
+ }
+  
+.loginpage,
+.signuppage{
+  width: 95%;
+}
+
+.opacity-decide-1{
+  height: 350px;
+}
+
+.img-data{
+  margin: 10px;
+  padding: 30px 0px 30px 30px;
+}
+
+.img-data h1{
+  font-size: 35px;
+}
+
+.img-data p{
+  font-size: 17px;
+}
+
+.img-data button{
+  margin-top: 35px;
+  font-size: 15px;
+  padding: 10px;
+}
+.confirmbooking-loginpage{
+  width: 100%;
+ }
+ .new-booking-body{
+  padding: 0px 0px 0px 0px;
+}
+.car-img-div{
+  width:100%;
+}
+.main-content-div{
+  height: 300px;
+}
+.car-main-img{
+  padding-top: 80px;
+  padding-left: 30px;
+  width: 350px;
+  height: 300px;
+}
+
+.main-heading{
+  position: absolute;
+  left:10%;
+  padding-top: 30px;
+  font-size: 25px;
+  line-height: 1.2;
+}
+
+.newbooking-loginpage{
+  width: 100%;
+}
+
+.title-font{
+  padding-top: 10px;
+  font-size: 20px;
+}
+
+.poupular-places{
+  width: 100%;
+  font-size: 20px;
+  margin: 5% auto auto 5%;
+}
+.localtourCard img{
+  margin: 0%;
+  width: 290px;
+  height: 150px;
+}
+.carkmdetail{
+  width: 100%;
+}
+.carkm_ptag{
+  font-size: 20px;
+  padding: 10px 10px 0px 10px ;
+}
+
+}

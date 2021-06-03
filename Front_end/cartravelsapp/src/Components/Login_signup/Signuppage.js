@@ -16,7 +16,7 @@ export default class Signuppage extends Component {
             this.setState({usernameCheck:"form-control is-valid",username:username1})
         }
         else {this.setState({usernameCheck:"form-control is-invalid"})}
-        console.log(this.state.username, event.target.value)
+        // console.log(this.state.username, event.target.value)
     }
 
     emailidHandler(event) {
@@ -26,7 +26,7 @@ export default class Signuppage extends Component {
             this.setState({emailidCheck:"form-control is-valid",emailid:email1})
         }
         else{this.setState({emailidCheck:"form-control is-invalid"})}
-        console.log(this.state.emailid,  event.target.value)
+        // console.log(this.state.emailid,  event.target.value)
     }
 
     phonenumberHandler(event) {
@@ -36,14 +36,14 @@ export default class Signuppage extends Component {
             this.setState({phonenumberCheck:"form-control is-valid",phonenumber:phoneNumber1})
         }
         else{this.setState({phonenumberCheck:"form-control is-invalid"})}
-        console.log(this.state.phonenumber ,  event.target.value)
+        // console.log(this.state.phonenumber ,  event.target.value)
     }
 
     passwordHandler(event) {
         let password1 = event.target.value;
         if(password1.length < 7) {this.setState({passwordCheck:"form-control is-invalid"})}
         else {this.setState({passwordCheck:"form-control is-valid",password:event.target.value})}
-        console.log(this.state.password ,  event.target.value)
+        // console.log(this.state.password ,  event.target.value)
     }
     
     signupuser(event){
@@ -62,17 +62,22 @@ export default class Signuppage extends Component {
                     event.target.reset();
                     alert(`Successfully signed up ✔ \nPlease Login to Continue 😊`)
                     this.props.history.push('/login')
+                }else{
+                    // console.log( res.message)
+                    var errormsg = res.message.split(":")
+                    errormsg.splice(1,2)
+                    alert(errormsg)
                 }
             })
         }else{
-            this.setState({usernameCheck:"form-control is-invalid",emailidCheck:"form-control is-invalid",phonenumberCheck:"form-control is-invalid",passwordCheck:"form-control is-invalid"})
+           alert("Please Enter All the fields Correctly!")
         }
     }
 
     render() {
         return (
             <div className="MainDiv">
-            <Container className="m-3 p-3">
+            <Container className="mt-2 mb-2 p-3">
                 <div className="signuppage">
                     <div className="user_signup_top"></div>
                     <p className="user_signup mt-2">Sign Up</p>
@@ -131,9 +136,9 @@ export default class Signuppage extends Component {
                     </Link>
                 </div>
                </Container>
-               <footer>
+               {/* <footer>
                  <p>&copy; 2021 done by Chandru</p>
-                </footer>
+                </footer> */}
             </div>
         )
     }

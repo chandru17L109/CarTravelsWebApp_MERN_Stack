@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import authHeader from '../services/auth-header';
 import AuthService from '../services/auth'
+import Table from 'react-bootstrap/Table'
 
 export default class Tourbookinglist extends Component {
     constructor(){
@@ -28,7 +29,6 @@ export default class Tourbookinglist extends Component {
         .then(res=>res.json())
         .then(data=>{
             console.log(data);
-            this.setState({message: 'Record successfully deleted'})
             var Userid  =  AuthService.finduserid();
             fetch('http://localhost:8010/api/v1/cartourbookedusers/'+Userid,{
                 headers:authHeader()
@@ -68,7 +68,7 @@ export default class Tourbookinglist extends Component {
     return (
         <div className="MainDiv">
         <h1 className="bookinglist">Tour Package Booking List</h1>
-        <table className="table table-striped">
+        <Table responsive className="table table-striped">
             <thead className="thead-dark">
                 <tr>
                     <th scope="col">#</th>
@@ -83,7 +83,7 @@ export default class Tourbookinglist extends Component {
             <tbody>
                 {previousBookingDataList}
             </tbody>
-        </table>
+        </Table>
         </div>
     )
    }

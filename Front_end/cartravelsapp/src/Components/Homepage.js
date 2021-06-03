@@ -16,11 +16,12 @@ export default class Homepage extends Component {
         fetch('http://localhost:8010/api/v1/adminHomePage')
         .then(res=>res.json())
         .then(data=>{
-            this.setState({GalleryDatas: data})
+            this.setState({GalleryDatas: data.data})
         });
     }
 
     render() {
+        console.log(this.state.GalleryDatas)
         let GalleryList = this.state.GalleryDatas.map((Gallerydata, i)=>{
             if(i<3){
                 return (
@@ -78,7 +79,7 @@ export default class Homepage extends Component {
                       </Link>
                     </div>
                 </div>
-                <Container>
+                <Container className="card_main_div">
                     <p className="tourpackage">Popular Packages</p>
                     <Row> 
                          {GalleryList}
@@ -88,32 +89,29 @@ export default class Homepage extends Component {
                 <Carousel>
                     <Carousel.Item>
                         <div className="Gallery-slider">
-                           <img src="http://www.transindiatravels.com/wp-content/uploads/mysore-zoo-mysore.jpg" alt="gallry pic" width="250px" height="210px"/>
-                           <img src="https://hippie-inheels.com/wp-content/uploads/2015/04/things-to-do-in-mysore.jpg" alt="gallry pic" width="350px" height="260px"/>
-                           <img src="https://cdn1.goibibo.com/voy_ing/t_fs/mysore-brindavan-gardens-149598201814o.jpeg" alt="gallry pic" width="350px" height="260px"/>
-                           <img src="https://4.imimg.com/data4/CC/CC/GLADMIN-/images-mysore-16001718986_a7538d38fe_b-500x500.jpg" alt="gallry pic" width="250px" height="210px"/>
+                           <img src="http://www.transindiatravels.com/wp-content/uploads/mysore-zoo-mysore.jpg" alt="gallry pic"  />
+                           <img src="https://hippie-inheels.com/wp-content/uploads/2015/04/things-to-do-in-mysore.jpg" alt="gallry pic"/>
+                           <img src="https://cdn1.goibibo.com/voy_ing/t_fs/mysore-brindavan-gardens-149598201814o.jpeg" alt="gallry pic"/>
+                           <img src="https://4.imimg.com/data4/CC/CC/GLADMIN-/images-mysore-16001718986_a7538d38fe_b-500x500.jpg" alt="gallry pic" />
                         </div>
                     </Carousel.Item>
                     <Carousel.Item>
                        <div className="Gallery-slider">
-                           <img src="https://www.makemytrip.com/travel-guide/media/dg_image/ooty/Government-Museum-PP-Yoonus-wikimedia-commons.jpg" alt="gallry pic" width="250px" height="210px"/>
-                           <img src="https://cdn1.tripoto.com/media/filter/tst/img/747480/Image/1585825644_ooty.jpg" alt="gallry pic" width="350px" height="260px"/>
-                           <img src="https://lp-cms-production.imgix.net/2020-11/Keukenhof%20tulips.jpg" alt="gallry pic" width="350px" height="260px"/>
-                           <img src="https://static.toiimg.com/thumb/msid-71134080,imgsize-349304,width-400,resizemode-4/71134080.jpg" alt="gallry pic" width="250px" height="210px"/>
+                           <img src="https://www.makemytrip.com/travel-guide/media/dg_image/ooty/Government-Museum-PP-Yoonus-wikimedia-commons.jpg" alt="gallry pic" />
+                           <img src="https://cdn1.tripoto.com/media/filter/tst/img/747480/Image/1585825644_ooty.jpg" alt="gallry pic"/>
+                           <img src="https://lp-cms-production.imgix.net/2020-11/Keukenhof%20tulips.jpg" alt="gallry pic"/>
+                           <img src="https://static.toiimg.com/thumb/msid-71134080,imgsize-349304,width-400,resizemode-4/71134080.jpg" alt="gallry pic" />
                         </div>
                     </Carousel.Item>
                     <Carousel.Item>
                        <div className="Gallery-slider">
-                           <img src="https://www.cgpsc.info/wp-content/uploads/2021/02/famous-places-to-visit-in-munnar.jpeg" alt="gallry pic" width="250px" height="210px"/>
-                           <img src="https://i.ytimg.com/vi/Of6FWToCby0/maxresdefault.jpg" alt="gallry pic" width="350px" height="260px"/>
-                           <img src="https://www.makemytrip.com/travel-guide/media/dg_image/munnar/Mattupetty-Dam_Munnar_0.jpg" alt="gallry pic" width="350px" height="260px"/>
-                           <img src="https://i.pinimg.com/736x/84/54/d7/8454d78fd34ba82cefeefe50857d3298.jpg" alt="gallry pic" width="250px" height="210px"/>
+                           <img src="https://www.cgpsc.info/wp-content/uploads/2021/02/famous-places-to-visit-in-munnar.jpeg" alt="gallry pic" />
+                           <img src="https://i.ytimg.com/vi/Of6FWToCby0/maxresdefault.jpg" alt="gallry pic"/>
+                           <img src="https://www.makemytrip.com/travel-guide/media/dg_image/munnar/Mattupetty-Dam_Munnar_0.jpg" alt="gallry pic"/>
+                           <img src="https://i.pinimg.com/736x/84/54/d7/8454d78fd34ba82cefeefe50857d3298.jpg" alt="gallry pic" />
                         </div>
                     </Carousel.Item>
                 </Carousel>
-
-              
-
                 <footer>
                     <p>&copy; 2021 done by Chandru</p>
                 </footer>

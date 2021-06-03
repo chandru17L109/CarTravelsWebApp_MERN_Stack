@@ -18,7 +18,7 @@ export default class HomepageAdmin extends Component {
         })
         .then(res=>res.json())
         .then(data=>{
-            this.setState({GalleryDatas: data})
+            this.setState({GalleryDatas: data.data})
         });
     }
 
@@ -33,7 +33,7 @@ export default class HomepageAdmin extends Component {
             fetch('http://localhost:8010/api/v1/adminHomePage')
             .then(res=>res.json())
             .then(data=>{
-                this.setState({GalleryDatas: data})
+                this.setState({GalleryDatas: data.data})
             });
         });
     }

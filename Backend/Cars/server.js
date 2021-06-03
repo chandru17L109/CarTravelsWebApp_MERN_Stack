@@ -8,6 +8,8 @@ const SignedUserRoutes = require('./routes/signupuser')
 const caruserRoutes = require('./routes/LocalBooking')
 const cartouruserRoutes = require('./routes/TourBooking')
 const adminhomepageRoute = require('./routes/Adminhomepage')
+const carkmpriceRoute = require('./routes/CarKmPrice')
+const UsersAttendance = require('./routes/Attendance')
 
 const errorHandler = require('./middleware/errorhandler')
 const connectToDatabase = require('./dbconnect')
@@ -21,6 +23,9 @@ app.use('/api/v1/signedupuserdetails', SignedUserRoutes);
 app.use('/api/v1/carbookedusers', caruserRoutes);
 app.use('/api/v1/cartourbookedusers', cartouruserRoutes);
 app.use('/api/v1/adminHomePage', adminhomepageRoute);
+app.use('/api/v1/CarkilometerDetails', carkmpriceRoute);
+app.use('/api/v1/AllUsersLog', UsersAttendance);
+
 
 app.use(errorHandler);
 

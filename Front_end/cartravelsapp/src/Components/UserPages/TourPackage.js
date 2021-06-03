@@ -7,7 +7,8 @@ import AuthService from '../services/auth'
 export default class TourPackage extends Component {
     constructor(){
         super();
-        this.state = {GalleryDatas: [], currentrole : ""}
+        this.sortbydata = React.createRef();
+        this.state = {GalleryDatas: [{},{}], currentrole : "",searchList:[], displayAll:true}
     }
     componentDidMount(){
         fetch('http://localhost:8010/api/v1/adminHomePage',{
@@ -15,28 +16,30 @@ export default class TourPackage extends Component {
         })
         .then(res=>res.json())
         .then(data=>{
-            this.setState({GalleryDatas: data})
+            this.setState({GalleryDatas: data.data})
         });
     }
-
-    addTourBookingDB(Gallerydata){
-        var userid  =  AuthService.finduserid();
-        fetch('http://localhost:8010/api/v1/cartourbookedusers', {
-                method: 'POST',
-                headers: authHeader(),
-                body: JSON.stringify({packagename: Gallerydata.packagename, packageprice : Gallerydata.packageprice, carType : Gallerydata.carType, noofdays : Gallerydata.noofdays, user : userid}),
-            })
-            .then(res=>{
-                console.log(res.status);
-                if(res.status === 201){
-                    this.props.history.push("/tourconfirmbooking");
-                }
-            })  
-    }
+        addTourBookingDB(Gallerydata){
+                var userid  =  AuthService.finduserid();
+                var usernameid = AuthService.findusername();
+                fetch('http://localhost:8010/api/v1/cartourbookedusers', {
+                        method: 'POST',
+                        headers: authHeader(),
+                        body: JSON.stringify({packagename: Gallerydata.packagename, packageprice : Gallerydata.packageprice, carType : Gallerydata.carType, noofdays : Gallerydata.noofdays, user : userid, usernameid : usernameid}),
+                    })
+                    .then(res=>{
+                        console.log(res.status);
+                        if(res.status === 201){
+                            this.props.history.push("/tourconfirmbooking");
+                        }
+                    })  
+       }
 
     booknow(Gallerydata){
         if(AuthService.findrole() === "user"){
+            console.log("gallerydate = > ",Gallerydata)
             this.addTourBookingDB(Gallerydata)
+            // this.props.history.push("/tourbeforeconfirmpage/"+Gallerydata)
         }else if(AuthService.findrole() === "admin"){
             alert("Admin can't Book tours")
         }else{
@@ -45,11 +48,34 @@ export default class TourPackage extends Component {
         }
     }
 
+    sortfunction(e){
+        e.preventDefault();
+        this.setState({displayAll:false})
+        fetch('http://localhost:8010/api/v1/adminHomePage/?sort='+ this.sortbydata.current.value,{
+            headers:authHeader()
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            this.setState({searchList : data.data, displayAll:false})
+            console.log("user",this.state.searchList)
+        });   
+    }
+
     render() {
-        let GalleryList = this.state.GalleryDatas.map((Gallerydata, i)=>{
+        if(this.state.displayAll){
+            var display = this.state.GalleryDatas
+        }else{
+            var display = this.state.searchList
+        }
+        console.log("length => ",display.length)
+
+        if(!display.length){
+            var GalleryList = "No Data Available !"
+        }else{
+            var GalleryList = display.map((Gallerydata, i)=>{
             return (
-                <Card className="Card_Gallery m-3 border-0" key={i}>
-                <Card.Img variant="top" src={Gallerydata.packageimage} width="340px" height="200px"/>
+                <Card className="Card_Gallery ml-3  border-0" key={i}>
+                <Card.Img variant="top" src={Gallerydata.packageimage} width="340px" height="250px"/>
                 <Card.Body className="text-center">
                     <Card.Title className="text-success"><b>{Gallerydata.packagename}</b></Card.Title>
                     <Card.Text >
@@ -58,12 +84,12 @@ export default class TourPackage extends Component {
                         <p className="card-text text-secondary"> No. of Days : <b>{Gallerydata.noofdays}</b> day package</p>
                         <p className="card-text"><b>Price @ ₹{Gallerydata.packageprice}</b></p>
                    </Card.Text>
-                   <Button variant="success" onClick={this.booknow.bind(this,Gallerydata)}>Book now</Button>
-                    {/* <Button variant="success"><Link to={'/loginpage'} className="linkcolor">Book now</Link></Button> */}
-                </Card.Body>
+                   <Button variant="success" className="mt-3"  onClick={this.booknow.bind(this,Gallerydata)}> Book now</Button> 
+             </Card.Body>
              </Card>
             );
         })
+    }
 
         return (
           <div className="MainDiv">
@@ -78,19 +104,51 @@ export default class TourPackage extends Component {
                     </button>
                  </div>
             </div>
+            <Container className="card_main_div">
+                    <form class="form-inline my-3">
+                        <p className="tourpackage">Tour Packages</p>
+                        <div class="form-group  form-inline ml-auto">
+                            <select className="form-control" ref={this.sortbydata} id="sortbydata">
+                                <option value=""> Display From </option>
+                                <option value="packageprice"> Low to High Price</option>
+                                <option value="-packageprice"> High to Low Price</option>
+                            </select>
+                            <button type="submit" className="btn btn-warning m-2" onClick={this.sortfunction.bind(this)}>Search</button>
 
-            <Container>
-                <p className="tourpackage">Tour Packages</p>
-                <Row> 
+                        </div>
+                    </form>
+            
+                    <Row> 
                         {GalleryList}
-                </Row>   
-            </Container>
-                
+                    </Row>   
+            </Container> 
             <footer>
                 <p>&copy; 2021 done by Chandru</p>
             </footer> 
-
           </div>
         )
     }
 }
+
+
+    // addTourBookingDB(Gallerydata){
+    //     var userid  =  AuthService.finduserid();
+    //     fetch('http://localhost:8010/api/v1/cartourbookedusers', {
+    //             method: 'POST',
+    //             headers: authHeader(),
+    //             body: JSON.stringify({packagename: Gallerydata.packagename, packageprice : Gallerydata.packageprice, carType : Gallerydata.carType, noofdays : Gallerydata.noofdays, user : userid}),
+    //         })
+    //         .then(res=>{
+    //             console.log(res.status);
+    //             if(res.status === 201){
+    //                 this.props.history.push("/tourconfirmbooking");
+    //             }
+    //         })  
+    // }
+
+
+{/* <Link to={'tourbeforeconfirmpage/' + Gallerydata._id}>
+        <Button variant="success" className="mt-3"> Book now</Button>
+</Link> */}
+{/* <Button variant="success"><Link to={'/loginpage'} className="linkcolor">Book now</Link></Button> */}
+        {/* <input type="text"  ref = {this.sortbydata} className="form-control m-2" id="inputsortdata" placeholder="Sort by price"/> */}

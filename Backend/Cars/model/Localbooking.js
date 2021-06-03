@@ -8,7 +8,8 @@ const CarUsersDataSchema = new Schema({
                    'minLength' : [3,'name should not be less than 3 character'],
                    'maxLength' : [18,'name should not be greater than 18 character'],
                     required : [true, 'Provide a name.. It is mandatory'],
-                   'trim': true
+                   'trim': true,
+                   'unique':false
                   },
    phoneNumber:   {'type': Number,
                    'validate': [/^[6-9]{1}[0-9]{9}$/, 'Please enter a valid phone Number'],
@@ -31,10 +32,10 @@ const CarUsersDataSchema = new Schema({
    user:          {'type': mongoose.Schema.Types.ObjectId,
                     ref: 'signupuserData',
                     required: [true,"Provide a Object Id It is mandatory"]
-                  }              
+                  },
+   usernameid :    {'type': String
+                  }         
   });
 
-
 const CarBookedUsersData = mongoose.model('CarBookedUsersData', CarUsersDataSchema);
-
 module.exports = CarBookedUsersData;

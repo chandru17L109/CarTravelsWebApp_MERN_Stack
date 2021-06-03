@@ -7,6 +7,10 @@ const insertuser = asyncHandler(async(req,res,next) => {
     res.status(201).json({success: "Added Sucessfully"})
 })
 
+// const findAllusers = asyncHandler(async(req, res)=>{
+//     res.status(200).json(res.advancedResults);
+// })
+
 const findAllusers = asyncHandler(async(req,res, next) => {
     let Car_datas =await CarBookedUsersData.find();
     res.json(Car_datas);

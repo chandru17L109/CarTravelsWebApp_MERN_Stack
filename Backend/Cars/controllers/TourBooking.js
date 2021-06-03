@@ -13,6 +13,10 @@ const findAllusers = asyncHandler(async(req,res, next) => {
     console.log(Car_datas);
 })
 
+// const findAllusers = asyncHandler(async(req, res)=>{
+//     res.status(200).json(res.advancedResults);
+// })
+
 const findOneUser = asyncHandler(async(req,res,next)=>{
     let Car_data=await CarTourBookedUsersData.find({user:req.params.user});
     if(Car_data.length !=0){

@@ -1,4 +1,5 @@
 const adminHomePageDataSchema = require('../model/Adminhomepage')
+const asyncHandler = require('../middleware/asyncHandler');
 
 const insertpackage = async(req,res,next) => {
     try{
@@ -7,13 +8,11 @@ const insertpackage = async(req,res,next) => {
         res.status(201).json({success: "Added Sucessfully"})}
     catch(err){next(err);}
 }
-const findAllpackages = async(req,res, next) => {
-    try{
-        let allHomeMainData =await adminHomePageDataSchema.find();
-        res.json(allHomeMainData);
-        console.log(allHomeMainData);}
-    catch(err) {next(err);}
-}
+
+const findAllpackages = asyncHandler(async(req, res)=>{
+    res.status(200).json(res.advancedResults);
+})
+
 const findonepackage = async (req,res,next)=>{
     try{
         let searchData=await adminHomePageDataSchema.find({packagenameid : req.params.packagenameid});
@@ -44,3 +43,11 @@ const updatepackage = async(req,res,next) => {
 
 
 module.exports = {insertpackage,findAllpackages,findonepackage,deletepackage,updatepackage};
+
+// const findAllpackages = async(req,res, next) => {
+//     try{
+//         let allHomeMainData =await adminHomePageDataSchema.find();
+//         res.json(allHomeMainData);
+//         console.log(allHomeMainData);}
+//     catch(err) {next(err);}
+// }

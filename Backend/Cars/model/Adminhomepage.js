@@ -33,14 +33,14 @@ const adminhomepageDataSchema = new Schema({
     carType:        {'type':String,
                      'minLength' : [8,'Provide a valid car type'],
                      'trim': true,
-                      required : [true, 'Provide a Car type(Ac/Non-Ac).. It is mandatory']
+                       required : [true, 'Provide a Car type(Ac/Non-Ac).. It is mandatory']
                     },
     noofdays:       {'type':Number,
                      'default': 1,
                     },
     user:           {'type': mongoose.Schema.Types.ObjectId,
-                      ref: 'signupuserData'
-                   //   required: [true,"Provide a Object Id It is mandatory"]
+                      ref: 'signupuserData',
+                    //  required: [true,"Provide a Object Id It is mandatory"]
                     }    
     });
 const adminHomePageDataSchema= mongoose.model('adminHomePageDataSchema', adminhomepageDataSchema);

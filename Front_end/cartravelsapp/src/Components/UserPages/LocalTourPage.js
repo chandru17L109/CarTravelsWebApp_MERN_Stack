@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Row} from 'react-bootstrap' 
+import {Container, Row} from 'react-bootstrap' 
 import car4 from '../Assets/car4.png';
 import kovai from '../Assets/kovai.JPG';
 import authHeader from '../services/auth-header';
@@ -22,7 +22,7 @@ export default class LocalTourPage extends Component {
 
     phonenumberHandler(event){
         let phonenumber1 = event.target.value;
-        var validphonenumber = new RegExp('[6-9]{1}[0-9]{9}$');
+        var validphonenumber = new RegExp('^[6-9]{1}[0-9]{9}$');
         if (validphonenumber.test(phonenumber1)) {
             this.setState({phonenumberCheck:"form-control is-valid",phonenumber:phonenumber1})
         }
@@ -68,12 +68,13 @@ export default class LocalTourPage extends Component {
         console.log(this.state.username,this.state.phonenumber,this.state.fromlocation,this.state.tolocation);
         if(this.state.usernameCheck === "form-control is-valid" && this.state.fromlocationCheck === "form-control is-valid" && this.state.phonenumberCheck === "form-control is-valid" && this.state.tolocationCheck === "form-control is-valid"){
             var userid  =  AuthService.finduserid();
+            var usernameid = AuthService.findusername();
             console.log("userid",userid); 
 
             fetch('http://localhost:8010/api/v1/carbookedusers', {
                 method: 'POST',
                 headers: authHeader(),
-                body: JSON.stringify({name: this.state.username, phoneNumber: this.state.phonenumber, FromLocation : this.state.fromlocation, ToLocation : this.state.tolocation, user: userid}),
+                body: JSON.stringify({name: this.state.username, phoneNumber: this.state.phonenumber, FromLocation : this.state.fromlocation, ToLocation : this.state.tolocation, user: userid, usernameid : usernameid}),
             })
             .then(res=>{
                 console.log(res.status);
@@ -83,7 +84,8 @@ export default class LocalTourPage extends Component {
                 }
             })
         }else{
-            this.setState({usernameCheck:"form-control is-invalid",fromlocationCheck:"form-control is-invalid",phonenumberCheck:"form-control is-invalid",tolocationCheck:"form-control is-invalid"})
+            alert("Please Enter All the fields Correctly!")
+            //this.setState({usernameCheck:"form-control is-invalid",fromlocationCheck:"form-control is-invalid",phonenumberCheck:"form-control is-invalid",tolocationCheck:"form-control is-invalid"})
         }  
     }
 
@@ -96,49 +98,53 @@ export default class LocalTourPage extends Component {
                     </div>
                     <div className="main-content-div">
                         <img className="car-main-img" src={car4} alt="car"></img> 
-                     </div>   
+                    </div>   
             </div>
-            <Row className="popular-image-kovai p-5">
+            <Container>
+            <Row className="popular-image-kovai">
+        
                <div className="poupular-places">
                    <p> Popular Places</p>
                </div>
-                <div className="Card_Gallery text-center m-3 border-0">
-                <div className="Card_Gallery_pic m-3">
-                    <img variant="top" src="https://images.sadhguru.org/sites/default/files/media_files/guru-purnima-photo.jpg" width="343px" height="200px" alt="galleryimages"/>
-                    <span className="title-font">Isha Yoga</span>
+                <div className="Card_Gallery text-center localtourCard  border-0">
+                    <div className="Local_Card_Gallery_pic">
+                        <img variant="top" src="https://images.sadhguru.org/sites/default/files/media_files/guru-purnima-photo.jpg"  alt="galleryimages"/>
+                        <p className="title-font">Isha Yoga</p>
+                    </div>
+                </div>
+                <div className="Card_Gallery text-center localtourCard  border-0">
+                <div className="Local_Card_Gallery_pic">
+                    <img variant="top" src="https://www.nativeplanet.com/photos/325x244x100/2018/11/photo-91-174633-1.jpg"  alt="galleryimages"/>
+                    <p className="title-font"> Marudhamalai Temple</p>
                 </div>
                 </div>
-                <div className="Card_Gallery text-center m-3 border-0">
-                <div className="Card_Gallery_pic m-3">
-                    <img variant="top" src="https://www.nativeplanet.com/photos/325x244x100/2018/11/photo-91-174633-1.jpg" width="343px" height="200px" alt="galleryimages"/>
-                    <span className="title-font"> Marudhamalai Temple</span>
+                <div className="Card_Gallery text-center localtourCard  border-0">
+                <div className="Local_Card_Gallery_pic">
+                    <img variant="top" src="https://www.covaipost.com/wp-content/uploads/2018/04/kovaikutralam.jpg"  alt="galleryimages"/>
+                    <p className="title-font"> Kovai Kutralam</p>
                 </div>
                 </div>
-                <div className="Card_Gallery text-center m-3 border-0">
-                <div className="Card_Gallery_pic m-3">
-                    <img variant="top" src="https://www.covaipost.com/wp-content/uploads/2018/04/kovaikutralam.jpg" width="343px" height="200px" alt="galleryimages"/>
-                    <span className="title-font"> Kovai Kutralam</span>
+                <div className="Card_Gallery text-center localtourCard  border-0">
+                <div className="Local_Card_Gallery_pic">
+                    <img variant="top" src="https://content3.jdmagicbox.com/comp/coimbatore/e9/0422px422.x422.110827121420.b4e9/catalogue/brookefields-plaza-coimbatore-ho-coimbatore-malls-1f0ntkf.jpg"  alt="galleryimages"/>
+                    <p className="title-font"> Brookefield</p>
                 </div>
                 </div>
-                <div className="Card_Gallery text-center m-3 border-0">
-                <div className="Card_Gallery_pic m-3">
-                    <img variant="top" src="https://content3.jdmagicbox.com/comp/coimbatore/e9/0422px422.x422.110827121420.b4e9/catalogue/brookefields-plaza-coimbatore-ho-coimbatore-malls-1f0ntkf.jpg" width="343px" height="200px" alt="galleryimages"/>
-                    <span className="title-font"> Brookefield</span>
+                <div className="Card_Gallery text-center localtourCard  border-0">
+                <div className="Local_Card_Gallery_pic">
+                    <img variant="top" src="https://pbs.twimg.com/media/DFQb0s5VoAAZyQv.jpg"  alt="galleryimages"/>
+                    <p className="title-font"> Prozone</p>
                 </div>
                 </div>
-                <div className="Card_Gallery text-center m-3 border-0">
-                <div className="Card_Gallery_pic m-3">
-                    <img variant="top" src="https://pbs.twimg.com/media/DFQb0s5VoAAZyQv.jpg" width="343px" height="200px" alt="galleryimages"/>
-                    <span className="title-font"> Prozone</span>
-                </div>
-                </div>
-                <div className="Card_Gallery text-center m-3 border-0">
-                <div className="Card_Gallery_pic m-3">
-                    <img variant="top" src="https://www.team-bhp.com/forum/attachments/vintage-cars-classics-india/1585559d1481876573t-visit-gedee-car-museum-coimbatore-dsc_0715.jpg" width="343px" height="200px" alt="galleryimages"/>
-                    <span className="title-font"> Gedee Museum </span>
+                <div className="Card_Gallery text-center localtourCard  border-0">
+                <div className="Local_Card_Gallery_pic">
+                    <img variant="top" src="https://www.team-bhp.com/forum/attachments/vintage-cars-classics-india/1585559d1481876573t-visit-gedee-car-museum-coimbatore-dsc_0715.jpg"  alt="galleryimages"/>
+                    <p className="title-font"> Gedee Museum </p>
                 </div>
                 </div>
         </Row>
+                         
+        </Container>
         <div className="form-bg">
         <div className="newbooking-loginpage">
         <div className="newbooking-user_login_top"></div>

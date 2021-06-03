@@ -36,9 +36,11 @@ const TourBookingDataSchema = new Schema({
                   'default': 1,
                  },
    user:           {'type': mongoose.Schema.Types.ObjectId,
-                   ref: 'signupuserData'
-                //   required: [true,"Provide a Object Id It is mandatory"]
-                 }             
+                   ref: 'signupuserData',
+                   required: [true,"Provide a Object Id It is mandatory"]
+                 },
+    usernameid : {'type': String
+    }           
   });
 
 

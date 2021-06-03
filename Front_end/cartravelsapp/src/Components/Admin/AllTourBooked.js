@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import authHeader from '../services/auth-header'
+import Table from 'react-bootstrap/Table'
 
 export default class AllTourBooked extends Component {
     constructor(){
@@ -53,7 +54,7 @@ export default class AllTourBooked extends Component {
                 return (
                         <tr key={i}>
                             <th scope="row">{i+1}</th>
-                            <td>{previousBooking.user}</td>
+                            <td>{previousBooking.usernameid}</td>
                             <td>{previousBooking.packagename}</td>
                             <td>{previousBooking.carType}</td>
                             <td>{previousBooking.noofdays}</td>
@@ -78,7 +79,7 @@ export default class AllTourBooked extends Component {
                 </form>
             </div>
 
-        <table className="table table-striped">
+        <Table responsive className="table table-striped">
             <thead className="thead-dark">
                 <tr>
                     <th scope="col">#</th>
@@ -93,7 +94,7 @@ export default class AllTourBooked extends Component {
             <tbody>
                 {FetchedData}
             </tbody>
-        </table>
+        </Table>
         </div>
     )
     }

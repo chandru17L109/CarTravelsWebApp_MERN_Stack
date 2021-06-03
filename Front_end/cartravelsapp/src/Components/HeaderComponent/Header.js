@@ -6,37 +6,48 @@ import {Link} from "react-router-dom";
 export default class Header extends Component {
     constructor(){
         super();
-        this.state = {navbarshow:"collapse navbar-collapse justify-content-end"}
+        this.state = {navbarshow:"collapse navbar-collapse justify-content-end", ShowStatus : false}
     }
 
-    show(e){
-        e.preventDefault();
-        this.setState({navbarshow:"collapse navbar-collapse justify-content-end show"})
-        console.log("navbar",this.state.navbarshow)
+    logout(){
+        localStorage.removeItem('token');
+        this.props.history.push("/");
+        window.location.reload();
+    }
+
+    show(){
+        if(!this.state.ShowStatus){
+          this.setState({navbarshow:"collapse navbar-collapse justify-content-end show", ShowStatus : true})
+        }else{
+          this.setState({navbarshow:"collapse navbar-collapse justify-content-end", ShowStatus : false})
+        }
     }
 
     render() {
-        console.log("navbar--1",this.state.navbarshow)
         return (
             <div className="MainDiv">
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+            <Link to={'/'} className="linkcolor">
               <div className="navbar-brand">
-                <Link to={'/'} className="linkcolor">
-                    <img alt="logo" src="https://yt3.ggpht.com/a/AATXAJyxJPOgMaAd69NNjLLzYBhyJmNT8PpQb3M4YS7jrA=s176-c-k-c0xffffffff-no-rj-mo" width="40px" height="40px" className="d-inline-block align-top"/>
+                    <img alt="logo" src="https://yt3.ggpht.com/a/AATXAJyxJPOgMaAd69NNjLLzYBhyJmNT8PpQb3M4YS7jrA=s176-c-k-c0xffffffff-no-rj-mo" className="d-inline-block logoimg align-top"/>
                     <span className="cartarvels">Car Travels</span>
-                </Link>
               </div>
-                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown">
-                    <span className="navbar-toggler-icon" onclick={this.show.bind(this)}></span>
+              </Link>
+
+                <button className="navbar-toggler" type="button" onClick={this.show.bind(this)} data-toggle="collapse" data-target="#navbarNavDropdown">
+                    <span className="navbar-toggler-icon"></span>
                 </button>
+
                 <div className={this.state.navbarshow} id="navbarNavDropdown">
                     <ul className="navbar-nav">
                         <Button variant="outline-primary" className="m-2" ><Link to={'/localnewbooking'} className="linkcolor">Local Package</Link></Button>
                         <Button variant="outline-warning" className="m-2" ><Link to={'/tourpackagelist'} className="linkcolor">Tour Package</Link></Button>
+                        <Button variant="outline-secondary" className="m-2" ><Link to={'/carKilometerDetails'} className="linkcolor">Car Km/hr Details</Link></Button>
                         <Button variant="outline-info" className="m-2"><Link to={'/signup'} className="linkcolor">Sign Up </Link></Button>
                         <Button variant="outline-info" className="m-2"><Link to={'/login'} className="linkcolor">Log In </Link></Button>
                     </ul>
                 </div>
+
                 </nav>
             </div>
         )

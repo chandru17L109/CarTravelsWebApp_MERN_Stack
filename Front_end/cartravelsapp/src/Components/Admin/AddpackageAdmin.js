@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { Navbar, Nav, Button, Container} from 'react-bootstrap'
-import {Link} from "react-router-dom";
+import {Container} from 'react-bootstrap'
 import authHeader from '../services/auth-header';
 
 export default class AddpackageAdmin extends Component {
@@ -50,7 +49,7 @@ export default class AddpackageAdmin extends Component {
         )}
         return (
         <div className="MainDiv">
-               <Container className="m-3 p-3">
+               <Container className="p-3">
                 {message}
                 <form onSubmit={this.AddPackageDetail.bind(this)}>
                     <div className="form-group">

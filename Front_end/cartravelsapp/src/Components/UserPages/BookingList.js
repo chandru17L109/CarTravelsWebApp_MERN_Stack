@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import authHeader from '../services/auth-header'
 import AuthService from '../services/auth'
+import Table from 'react-bootstrap/Table'
 
 export default class UserBookingList extends Component {
     constructor(){
@@ -63,7 +64,7 @@ export default class UserBookingList extends Component {
     return (
         <div className="MainDiv">
         <h1 className="bookinglist">Local Package Booking List</h1>
-        <table className="table table-striped">
+        <Table responsive className="table table-striped">
             <thead className="thead-dark">
                 <tr>
                     <th scope="col">#</th>
@@ -78,7 +79,7 @@ export default class UserBookingList extends Component {
             <tbody>
                 {previousBookingDataList}
             </tbody>
-        </table>
+        </Table>
       </div>
     )
    }

@@ -1,11 +1,12 @@
 var express = require('express')
 var router = express.Router()
 const {protect,authorize_role} = require('../middleware/authenticate');
-
+// const query_find = require('../middleware/query_params');
 const {findAllusers,insertuser,findOneUser,deleteuser} = require('../controllers/TourBooking')
+// const TourDetails = require('../model/TourBooking');
 
 router.route('/')
-.get(protect,authorize_role('user','admin'),findAllusers)
+.get(findAllusers)
 .post(protect,authorize_role('user'),insertuser)
 
 router.route('/:user')

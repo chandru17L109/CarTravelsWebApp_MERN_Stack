@@ -9,12 +9,13 @@ const signupuserDataSchema = new Schema({
                 'uppercase': true,
                 'minLength' : [3,'name should not be less than 3 character'],
                 'maxLength' : [20,'name should not be greater than 20 character'],
-                required : [true, 'Provide a name. It is mandatory'],
+                required : [true, 'Provide a Unique UserId/UserName'],
                 'trim': true,
+                'unique':true
                 },
     emailid:    {'type': String,
                   match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address'],
-                  required : [true, 'Provide a Email-Id.. It is mandatory'],
+                  required : [true, 'Provide a Unique Email-Id'],
                   'trim': true,
                   'unique':true
                 },
@@ -38,7 +39,7 @@ const signupuserDataSchema = new Schema({
 
 
 signupuserDataSchema.methods.generateToken = async function(){
-    let token = await jwt.sign({id: this._id,role: this.role, emailid : this.emailid}, process.env.JSON_SECRET_KEY);
+    let token = await jwt.sign({id: this._id,role: this.role, emailid : this.emailid, username : this.username }, process.env.JSON_SECRET_KEY);
     return token;
 }
 

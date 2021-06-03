@@ -15,13 +15,20 @@ import Thanks from './Components/UserPages/Thanks';
 import TourConfirmBooking from './Components/UserPages/tourconfirmbooking';
 import BookingList from './Components/UserPages/BookingList';
 import AllsignedUsers from './Components/Admin/AllsignedUsers';
-import UserHeader from './Components/All_Components/UserHeader';
-import Header from './Components/All_Components/Header';
+import UserHeader from './Components/HeaderComponent/UserHeader';
+import Header from './Components/HeaderComponent/Header';
 import AuthService from './Components/services/auth'
-import AdminHeader from "./Components/All_Components/AdminHeader";
+import AdminHeader from "./Components/HeaderComponent/AdminHeader";
 import Tourbookinglist from "./Components/UserPages/Tourbookinglist";
 import AllLocalBooked from "./Components/Admin/AllLocalBooked";
 import AllTourBooked from "./Components/Admin/AllTourBooked";
+import TourBeforeConfirm from "./Components/UserPages/TourBeforeConfirm";
+import CarDetails from "./Components/UserPages/CarDetails";
+import CarDetailsAdmin from "./Components/Admin/CarDetailsAdmin";
+import AddCarKmdetail from "./Components/Admin/AddCarKmdetail";
+import UpdateCarKmDetail from "./Components/Admin/UpdateCarKmDetail";
+import UserLogDetail from "./Components/UserPages/UserLogDetail";
+import Chart from "./Components/Admin/Chart";
 
 function App() {
   const [role, setRole] = useState(false);
@@ -32,11 +39,11 @@ function App() {
   }, [])
 
   if(role === "user"){
-      var navBar = <UserHeader/>
+      var navBar = <Route path="/"  component={UserHeader}></Route>   
   }else if (role === "admin"){
-    var navBar = <AdminHeader/>
+    var navBar = <Route path="/" component={AdminHeader}></Route>  
   }else{
-    var navBar = <Header/>
+    var navBar = <Route path="/" component={Header}></Route>  
   }
 
   return (
@@ -54,6 +61,7 @@ function App() {
         <Route path="/localnewbooking" component={LocalTourPage}></Route>
         <Route path="/tourpackagelist" component={TourPackage}></Route>
         <Route path="/confirmbooking" component={ConfirmBooking}></Route>
+        {/* <Route path="/tourconfirmbooking/:currentdetails" component={TourConfirmBooking}></Route> */}
         <Route path="/tourconfirmbooking" component={TourConfirmBooking}></Route>
         <Route path="/updatepackagedetail/:packagenameid" component={UpdatepackageAdmin}></Route>
         <Route path="/thankyou" component={Thanks}></Route>
@@ -62,9 +70,18 @@ function App() {
         <Route path="/allsignedupusers" component={AllsignedUsers}></Route>
         <Route path="/adminAllLocalBookingList" component={AllLocalBooked}></Route>
         <Route path="/adminAllTourbookinglist" component={AllTourBooked}></Route>
+        <Route path="/tourbeforeconfirmpage/:packagenameid" component={TourBeforeConfirm}></Route>
+        <Route path="/carKilometerDetails" component={CarDetails}></Route>
+        <Route path="/carKilometerDetailsAdmin" component={CarDetailsAdmin}></Route>
+        <Route path="/addnewcarkmdetails" component={AddCarKmdetail}></Route>
+        <Route path="/updatecarkmdetail/:vechicleid" component={UpdateCarKmDetail}></Route>
+        <Route path="/userlogdetails" component={UserLogDetail}></Route>Admintourchart
+        <Route path="/Admintourchart" component={Chart}></Route>
 
-        
       </Switch>
+      {/* <footer>
+          <p>&copy; 2021 done by Chandru</p>
+      </footer>  */}
     </Router>
   );
 }

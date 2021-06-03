@@ -5,9 +5,18 @@ import authHeader from '../services/auth-header';
 export default class TourConfirmBooking extends Component {
     constructor(){
         super();
-        this.state = {tourconfirmbooking: []}
+        this.state = {tourconfirmbooking: [],userselectedDetails:[]}
     }
     componentDidMount(){
+        // const { match: { params } } = this.props;
+        // console.log(this.props);
+        // console.log(params.currentdetails)
+        // var templist = (params.currentdetails).split(",");
+        // console.log(templist)
+        // this.setState({userselectedDetails : params.currentdetails})
+        // console.log(this.state.userselectedDetails)
+       //console.log(this.state.userselectedDetails.username)
+    
         fetch('http://localhost:8010/api/v1/cartourbookedusers',{
             headers:authHeader()
         })
@@ -15,6 +24,7 @@ export default class TourConfirmBooking extends Component {
         .then(data=>{
             this.setState({tourconfirmbooking: data[data.length - 1]})
             console.log(this.state.tourconfirmbooking)
+            // console.log(this.state.userselectedDetails)
         });
     }
     render() {

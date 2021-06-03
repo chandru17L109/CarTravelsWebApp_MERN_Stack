@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from "react-router-dom";
-import { Navbar, Nav, Button, Container} from 'react-bootstrap'
-import Header from '../All_Components/Header';
-import Alert from 'react-bootstrap/Alert'
+import {Container} from 'react-bootstrap'
+import AuthService from '../services/auth'
 
 export default class LoginPage extends Component {
     constructor(){
@@ -40,16 +39,33 @@ export default class LoginPage extends Component {
             .then(res=>{
                 console.log(res);
                 if(res.success === true){ 
-                    localStorage.setItem('token', res.token);
-                    alert("Successfully Logged in ✔")
-                    this.props.history.push("/");
-                    window.location.reload();
+                    if(!localStorage.getItem('token')){
+                        localStorage.setItem('token', res.token);
+                        alert("Successfully Logged in ✔")
+                        var current_user = AuthService.finduserid()
+                        fetch('http://localhost:8010/api/v1/AllUsersLog',{
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({user : current_user, loggedinAt : new Date().toLocaleString(), status : "IN"}),
+                        })
+                        .then(data =>data.json())
+                        .then(res=>{
+                            console.log(res);
+                        })
+                        this.props.history.push("/");
+                         window.location.reload();
+                    }else{
+                        alert("Already Signed In ✔")
+                        this.props.history.push("/");
+                        window.location.reload();
+                    }    
                 }else{
-                    alert("After Signup Please Login ☺\nor\nUsername/Password incorrect ❌")
+                    alert("Username/Password incorrect ❌\nor\nAfter Signup Please Login ☺")
                 }
             })
         }else{
-            this.setState({emailidCheck:"form-control is-invalid",passwordCheck:"form-control is-invalid"})
+            alert("Please Enter All the fields Correctly!")
+        //  this.setState({emailidCheck:"form-control is-invalid",passwordCheck:"form-control is-invalid"})
         } 
     }
 
@@ -59,7 +75,7 @@ export default class LoginPage extends Component {
                 {/* <div>
                     <Header/>
                 </div> */}
-               <Container className="m-3 mb-4 p-3">
+               <Container className="mt-3 mb-4 p-3">
                 <div className="loginpage">
                     <div className="user_login_top"></div>
                     <p className="user_login mt-2">User Login</p>
@@ -96,9 +112,9 @@ export default class LoginPage extends Component {
                     </Link>
                 </div>
                </Container>
-               <footer>
+               {/* <footer>
                  <p>&copy; 2021 done by Chandru</p>
-                </footer>
+                </footer> */}
             </div>
         )
     }
