@@ -53,7 +53,7 @@ export default class AllLocalBooked extends Component {
                         <tr key={i}>
                             <th scope="row">{i+1}</th>
                             <td>{previousBooking.usernameid}</td>
-                            <td>{previousBooking.name}</td>
+                            <td>{previousBooking.user_name}</td>
                             <td>{previousBooking.phoneNumber}</td>
                             <td>{previousBooking.FromLocation}</td>
                             <td>{previousBooking.ToLocation}</td>
@@ -65,15 +65,19 @@ export default class AllLocalBooked extends Component {
 
     return (
         <div className="MainDiv">
-        
-           <div className="bookinglist">
+              <div className="bookinglist">
                 <form class="form-inline">
-                <h2>Local Package Booking List</h2>
-                <div class="form-group ml-auto">
-                    <input type="text"  ref = {this.searchinput} className="form-control m-2 " id="inputsearch" placeholder="Search By User Id"/>
-                </div>
-                <button type="submit" className="btn btn-warning m-2" onClick={this.search.bind(this)}>Search</button>
-                <button type="submit" className="btn btn-secondary m-2" onClick={this.allbooking.bind(this)}>All Bookings</button>
+
+                    <h2 className="col-12 col-sm-12 col-md-6 col-xl-6 heading-book">Local Package Booked List</h2>
+
+                    <div className="col-12 col-sm-12 col-md-6 col-xl-6">
+                        <div class="form-group">
+                            <input type="text"  ref = {this.searchinput} className="form-control m-2 " id="inputsearch" placeholder="Search By User Id" autocomplete="off"/>
+                            <button type="submit" className="btn btn-warning m-2" onClick={this.search.bind(this)}>Search</button>
+                            <button type="submit" className="btn btn-secondary m-2" onClick={this.allbooking.bind(this)}>All Bookings</button>
+                        </div>
+                    </div>
+
                 </form>
             </div>
 
@@ -100,26 +104,3 @@ export default class AllLocalBooked extends Component {
     )
    }
 }
-
-
-{/* <td><button type="button" onClick={this.deletepreviousBooking.bind(this, previousBooking._id)} className="btn btn-danger m-1"> Delete </button> */}
-{/* <button type="button" className="btn btn-warning m-1"> <Link to={'updateCarBookedData/' + previousBooking.name}>Update</Link> </button> */}
-{/* </td> */}
-// deletepreviousBooking(id){
-//     fetch('http://localhost:8010/api/v1/carbookedusers/' + id, {
-//     headers:authHeader(),    
-//     method: 'DELETE' 
-//     })
-//     .then(res=>res.json())
-//     .then(data=>{
-//         console.log(data);
-//         this.setState({message: 'Record successfully deleted'})
-//             fetch('http://localhost:8010/api/v1/carbookedusers/',{
-//                 headers:authHeader()
-//             })
-//             .then(res=>res.json())
-//             .then(data=>{
-//                 this.setState({previousBookingList : data})
-//             });
-//     });
-// }

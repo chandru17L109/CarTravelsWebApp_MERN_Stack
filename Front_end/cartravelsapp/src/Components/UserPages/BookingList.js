@@ -49,7 +49,7 @@ export default class UserBookingList extends Component {
                 return (
                         <tr key={i}>
                             <th scope="row">{i+1}</th>
-                            <td>{previousBooking.name}</td>
+                            <td>{previousBooking.user_name}</td>
                             <td>{previousBooking.phoneNumber}</td>
                             <td>{previousBooking.FromLocation}</td>
                             <td>{previousBooking.ToLocation}</td>

@@ -6,13 +6,13 @@ const TourBookingDataSchema = new Schema({
    name:          {'type': String,
                    'uppercase': true,
                    'minLength' : [3,'name should not be less than 3 character'],
-                   'maxLength' : [18,'name should not be greater than 18 character'],
-                    // required : [true, 'Provide a name.. It is mandatory'],
+                  //  'maxLength' : [18,'name should not be greater than 18 character'],
+                    required : [true, 'Provide a name.. It is mandatory'],
                    'trim': true
                   },
    phoneNumber:   {'type': Number,
                    'validate': [/^[6-9]{1}[0-9]{9}$/, 'Please enter a valid phone Number'],
-                    // required : [true, 'Provide a phone number.. It is mandatory'],
+                    required : [true, 'Provide a phone number.. It is mandatory'],
                    'trim': true
                   },
    packagename:    {'type': String,
@@ -24,8 +24,8 @@ const TourBookingDataSchema = new Schema({
                   'trim': true,
                    required : [true, 'Provide a drop location.. It is mandatory']
                  },
-   packageDate:    {'type': Date, 
-                  'default': Date.now()
+   packageDate:    {'type': String, 
+                  'default': new Date().toLocaleString()
                  },
    carType:     {'type':String,
                   'minLength' : [8,'Provide a valid car type'],
@@ -39,8 +39,8 @@ const TourBookingDataSchema = new Schema({
                    ref: 'signupuserData',
                    required: [true,"Provide a Object Id It is mandatory"]
                  },
-    usernameid : {'type': String
-    }           
+  usernameid : {'type': String
+               }           
   });
 
 

@@ -1,8 +1,8 @@
 var express = require('express')
 var router = express.Router()
-const {protect,authorize_role} = require('../middleware/authenticate');
+const {protect,authorize_role} = require('../middleware/authenticate.js');
 // const query_find = require('../middleware/query_params');
-const {findAllusers,insertuser,findOneUser,deleteuser} = require('../controllers/TourBooking')
+const {findAllusers,insertuser,findOneUser,deleteuser} = require('../controllers/TourBooking.js')
 // const TourDetails = require('../model/TourBooking');
 
 router.route('/')

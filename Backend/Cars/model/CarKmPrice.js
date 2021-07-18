@@ -7,7 +7,7 @@ const CarKmPriceDataSchema = new Schema({
                   'type': String,
                   'uppercase': true,
                   'minLength' : [3,'name should not be less than 3 character'],
-                  'maxLength' : [30,'name should not be greater than 30 character'],
+                  // 'maxLength' : [30,'name should not be greater than 30 character'],
                    required : [true, 'Provide a vechicle name.. It is mandatory'],
                    'trim': true,
                    'unique':true
@@ -15,7 +15,7 @@ const CarKmPriceDataSchema = new Schema({
    vechicle:     {'type': String,
                    'uppercase': true,
                    'minLength' : [3,'name should not be less than 3 character'],
-                   'maxLength' : [30,'name should not be greater than 30 character'],
+                  //  'maxLength' : [30,'name should not be greater than 30 character'],
                     required : [true, 'Provide a vechicle name.. It is mandatory'],
                    'trim': true
                   },

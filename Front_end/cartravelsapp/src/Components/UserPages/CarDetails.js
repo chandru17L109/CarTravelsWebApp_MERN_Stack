@@ -1,17 +1,19 @@
 import React, { Component } from 'react'
 import Table from 'react-bootstrap/Table'
 import authHeader from '../services/auth-header'
-import Carimg1 from '../Assets/car-4-seater1.jpg'
-import Carimg2 from '../Assets/car-6-seater.jpg'
-import Carimg3 from '../Assets/toyato-6-1.png'
-import Carimg4 from '../Assets/car-12-seater1.jpg'
-
+import car1 from '../Assets/car21.png'
+import car3 from '../Assets/car4.png'
+import car2 from '../Assets/car5.png';
+import car4 from '../Assets/toyato-6-1.png';
+import car5 from '../Assets/car-6-seater.jpg';
+import car6 from '../Assets/car-12-seater1.png';
+import {Button,Card,Row,Container} from 'react-bootstrap' 
 
 export default class CarDetails extends Component {
         constructor(){
             super();
             this.searchinput = React.createRef();
-            this.state = {Car_km_Details: [], searchList:[], displayAll:true}
+            this.state = {Car_km_Details: [], cargallery: [car1,car2,car3,car4,car5,car6], searchList:[], displayAll:true}
         }
     
         componentDidMount(){
@@ -24,35 +26,7 @@ export default class CarDetails extends Component {
             });
         }
     
-        // search(e){
-        //     e.preventDefault();
-        //     this.setState({displayAll:false})
-        //     fetch('http://localhost:8010/api/v1/CarkilometerDetails/'+ this.searchinput.current.value,{
-        //         headers:authHeader()
-        //     })
-        //     .then(res=>res.json())
-        //     .then(data=>{
-        //         this.setState({searchList : data})
-        //     });   
-        // }
-     
-        // allbooking(e){
-        //     e.preventDefault();
-        //     this.searchinput.current.value="";
-        //     this.setState({displayAll:true});
-        // }
-    
         render() {
-            // if(this.state.displayAll){
-            //     var display = this.state.Car_km_Details
-            // }else{
-            //     var display = this.state.searchList
-            // }
-    
-            // console.log("length => ",display.length)
-            // if(!display.length){
-            //     var FetchedData = "No Data Available !"
-            // }else{
                 var FetchedData = this.state.Car_km_Details.map((Car_km_Detail, i)=>{
                     return (
                             <tr key={i}>
@@ -65,44 +39,43 @@ export default class CarDetails extends Component {
                                 </tr>
                     );
                 })
-            // }
+                var GalleryList = this.state.cargallery.map((cargalleryimage, i)=>{
+                    return (
+                        <div className="col-sm-12 col-md-4 col-xl-4">
+                            <Card className="border-0 carimage" key={i}>
+                                <Card.Img variant="top" src={cargalleryimage}/>
+                            </Card>
+                         </div>
+                    );
+                    })
     
         return (
-            <div className="MainDiv main_carkmdetail ">
-            
-               {/* <div className="bookinglist">
-                    <form class="form-inline">
-                    <h2>Local Package Booking List</h2>
-                    <div class="form-group ml-auto">
-                        <input type="text"  ref = {this.searchinput} className="form-control m-2 " id="inputsearch" placeholder="Search By User Id"/>
-                    </div>
-                    <button type="submit" className="btn btn-warning m-2" onClick={this.search.bind(this)}>Search</button>
-                    <button type="submit" className="btn btn-secondary m-2" onClick={this.allbooking.bind(this)}>All Bookings</button>
-                    </form>
-                </div> */}
-        <p className="carkm_ptag">Rate/KM is applied when Minimum KM limit exceeds !</p>
+        <div className="MainDiv">
+            <div className="main_carkmdetail">
+                <p className="carkm_ptag">Rate/KM is applied when Minimum KM limit exceeds !</p>
+                <div className="carkmdetail">
+                    <Table responsive className="table">
+                        <thead className="thead-dark">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Vechicle</th>
+                                <th scope="col">Minimun KM</th>
+                                <th scope="col">Rate/KM</th>
+                                <th scope="col">Driver Allowance</th>
+                                <th scope="col">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>  {FetchedData}  </tbody>
+                    </Table>
+                </div>
+                <p className="carkm_ptag">Tollgate, Parking and Other Expenses will be Extra !</p>
+           </div>
 
-          <div className="carkmdetail">
-            <Table responsive className="table table-striped ">
-                <thead className="thead-dark">
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Vechicle</th>
-                        <th scope="col">Minimun KM</th>
-                        <th scope="col">Rate/KM</th>
-                        <th scope="col">Driver Allowance</th>
-                        <th scope="col">Amount</th>
-                    </tr>
-                </thead>
-                <tbody>  {FetchedData}  </tbody>
-             </Table>
-          </div>
-
-        <p className="carkm_ptag">Tollgate, Parking and Other Expenses will be Extra !</p>
+        <p className="availabecars">Available Cars</p>
+            <div class="row px-5 mb-5">
+                {GalleryList} 
+            </div>
         
-        <footer>
-            <p>&copy; 2021 done by Chandru</p>
-        </footer>
 
         </div>
         )
@@ -146,4 +119,42 @@ export default class CarDetails extends Component {
                 <img src={Carimg4} ></img>
             </div>
         </div> */}
+       {/* <div className="bookinglist">
+                    <form class="form-inline">
+                    <h2>Local Package Booking List</h2>
+                    <div class="form-group ml-auto">
+                        <input type="text"  ref = {this.searchinput} className="form-control m-2 " id="inputsearch" placeholder="Search By User Id"/>
+                    </div>
+                    <button type="submit" className="btn btn-warning m-2" onClick={this.search.bind(this)}>Search</button>
+                    <button type="submit" className="btn btn-secondary m-2" onClick={this.allbooking.bind(this)}>All Bookings</button>
+                    </form>
+                </div> */}
+                      // if(this.state.displayAll){
+            //     var display = this.state.Car_km_Details
+            // }else{
+            //     var display = this.state.searchList
+            // }
     
+            // console.log("length => ",display.length)
+            // if(!display.length){
+            //     var FetchedData = "No Data Available !"
+            // }else{
+
+              
+        // search(e){
+        //     e.preventDefault();
+        //     this.setState({displayAll:false})
+        //     fetch('http://localhost:8010/api/v1/CarkilometerDetails/'+ this.searchinput.current.value,{
+        //         headers:authHeader()
+        //     })
+        //     .then(res=>res.json())
+        //     .then(data=>{
+        //         this.setState({searchList : data})
+        //     });   
+        // }
+     
+        // allbooking(e){
+        //     e.preventDefault();
+        //     this.searchinput.current.value="";
+        //     this.setState({displayAll:true});
+        // }

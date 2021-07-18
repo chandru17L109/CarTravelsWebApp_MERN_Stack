@@ -41,20 +41,22 @@ export default class HomepageAdmin extends Component {
     render() {
         let GalleryList = this.state.GalleryDatas.map((Gallerydata, i)=>{
             return (
-                <Card className="Card_Gallery m-3 border-0" key={i}>
-                    <Card.Img variant="top" src={Gallerydata.packageimage} width="340px" height="200px"/>
-                    <Card.Body className="text-center">
-                        <Card.Title>{Gallerydata.packagename}</Card.Title>
-                        <Card.Text >
-                            <p className="card-text">{Gallerydata.packagedetails}</p>
-                            <p className="card-text"> Car Type : {Gallerydata.carType}</p>
-                            <p className="card-text"> No. of Days : <b>{Gallerydata.noofdays}</b> day package</p>
-                            <p className="card-text"><b>Price @ ₹{Gallerydata.packageprice}</b></p>
-                    </Card.Text>
-                        <Button variant="outline-primary" className="m-2"><Link to={'updatepackagedetail/' + Gallerydata.packagenameid}>Update</Link></Button>
-                        <Button variant="outline-danger" onClick={this.deletepackage.bind(this, Gallerydata.packagenameid)} className="m-2">Delete</Button>
-                    </Card.Body>
+                <div className="col-12 col-sm-6 col-md-6 col-xl-4">
+                <Card className="Card_Gallery m-2  border-0" key={i}>
+                  <Card.Img variant="top" src={Gallerydata.packageimage} width="340px" height="250px"/>
+                  <Card.Body className="text-center">
+                      <Card.Title className="text-success cardtitle"><b>{Gallerydata.packagename}</b></Card.Title>
+                      <Card.Text >
+                          <p className="card-text text-primary">{Gallerydata.packagedetails}</p>
+                          <p className="card-text text-info"> Car Type : {Gallerydata.carType}</p>
+                          <p className="card-text text-secondary"> No. of Days : <b>{Gallerydata.noofdays}</b> day package</p>
+                          <p className="card-text"><b>Price @ ₹{Gallerydata.packageprice}</b></p>
+                      </Card.Text>
+                      <Button variant="outline-primary" className="m-2"><Link to={'updatepackagedetail/' + Gallerydata.packagenameid}>Update</Link></Button>
+                        <Button variant="outline-danger" onClick={this.deletepackage.bind(this, Gallerydata.packagenameid)} className="m-2" disabled={true}>Delete</Button>
+                   </Card.Body>
                 </Card>
+             </div>
             );
         })
         return (
@@ -68,9 +70,7 @@ export default class HomepageAdmin extends Component {
                     </Row>
                 </Container>
 
-                <footer>
-                    <span>&copy; 2021 done by Chandru</span>
-                </footer>
+               
 
             </div>
         )

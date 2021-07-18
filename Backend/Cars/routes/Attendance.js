@@ -1,9 +1,9 @@
 var express = require('express')
 var router = express.Router()
-const query_find = require('../middleware/query_params');
-const {protect,authorize_role} = require('../middleware/authenticate');
-const Users_Log = require('../model/Attendance');
-const {findAlluserlog,insertuserlog,findOneUserLog,updateUserLog} = require('../controllers/Attendance')
+const query_find = require('../middleware/query_params.js');
+const {protect,authorize_role} = require('../middleware/authenticate.js');
+const Users_Log = require('../model/Attendance.js');
+const {findAlluserlog,insertuserlog,findOneUserLog,updateUserLog} = require('../controllers/Attendance.js')
 
 router.route('/')
 .get(query_find(Users_Log),findAlluserlog)

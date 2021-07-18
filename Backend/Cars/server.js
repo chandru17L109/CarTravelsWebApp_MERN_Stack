@@ -26,12 +26,12 @@ app.use('/api/v1/adminHomePage', adminhomepageRoute);
 app.use('/api/v1/CarkilometerDetails', carkmpriceRoute);
 app.use('/api/v1/AllUsersLog', UsersAttendance);
 
+app.get('/',(req,res)=>{
+    res.send("hello API")
+})
 
 app.use(errorHandler);
 
-app.listen(process.env.APP_PORT, ()=> console.log(`listening on port ${process.env.APP_PORT}`))
+const PORT = process.env.PORT || 8010
 
-
-// app.get('/test', function (req, res) {
-//     throw new Error('BROKEN') 
-// })
+app.listen(PORT, ()=> console.log(`listening on port ${PORT}`))

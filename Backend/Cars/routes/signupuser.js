@@ -1,8 +1,8 @@
 var express = require('express')
 var router = express.Router()
-const {protect,authorize_role} = require('../middleware/authenticate');
+const {protect,authorize_role} = require('../middleware/authenticate.js');
 
-const {findAllusersdata,insertuserdata,findOneUserdata,deleteuserdata,updateuserdata,loginUser} = require('../controllers/signupuser')
+const {findAllusersdata,insertuserdata,findOneUserdata,deleteuserdata,updateuserdata,loginUser} = require('../controllers/signupuser.js')
 
 router.route('/')
 .get(protect,authorize_role('admin'),findAllusersdata)

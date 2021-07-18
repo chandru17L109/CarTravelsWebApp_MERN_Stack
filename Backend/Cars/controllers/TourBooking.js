@@ -1,5 +1,5 @@
-const CarTourBookedUsersData = require('../model/TourBooking')
-const asyncHandler = require('../middleware/asyncHandler');
+const CarTourBookedUsersData = require('../model/TourBooking.js')
+const asyncHandler = require('../middleware/asyncHandler.js');
 
 const insertuser = asyncHandler(async(req,res,next) => {
     let caruser_postdata = await CarTourBookedUsersData.create(req.body);
@@ -18,15 +18,24 @@ const findAllusers = asyncHandler(async(req,res, next) => {
 // })
 
 const findOneUser = asyncHandler(async(req,res,next)=>{
-    let Car_data=await CarTourBookedUsersData.find({user:req.params.user});
-    if(Car_data.length !=0){
-        res.json(Car_data);
-        console.log(Car_data);}
-    else throw new Error(`No record found for ${req.params.user}`)
+    var params_data = req.params.user
+    if(params_data[0] >= 0 && params_data[0] <= 9){
+        let Car_data=await CarTourBookedUsersData.find({user:params_data});
+        if(Car_data.length !=0){
+            res.json(Car_data);
+            console.log(Car_data);}
+        else throw new Error(`No record found for ${req.params.user}`)
+    }else{
+        let Car_data=await CarTourBookedUsersData.find({usernameid:params_data});
+        if(Car_data.length !=0){
+            res.json(Car_data);
+            console.log(Car_data);}
+        else throw new Error(`No record found for ${req.params.usernameid}`)
+    }
 })
 
 const deleteuser = asyncHandler(async (req,res,next)=>{
-    let Car_data=await CarTourBookedUsersData.deleteOne({packagename:req.params._id});
+    let Car_data=await CarTourBookedUsersData.deleteOne({_id:req.params._id});
     if(Car_data.n !== 0){
           res.status(201).json({success: "Sucessfully Deleted"})}
     else throw new Error(`No record found for ${req.params._id}`)

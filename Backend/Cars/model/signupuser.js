@@ -34,12 +34,19 @@ const signupuserDataSchema = new Schema({
                   type: String,
                   enum: ['user','admin'],
                   default: 'user'
-                }
+                },
+    signeddate : {"type": String,
+                  default :  new Date().toLocaleString()
+    }
   });
 
 
 signupuserDataSchema.methods.generateToken = async function(){
-    let token = await jwt.sign({id: this._id,role: this.role, emailid : this.emailid, username : this.username }, process.env.JSON_SECRET_KEY);
+    let user = {id: this._id, role: this.role, emailid: this.emailid, username: this.username};
+    let tokenvalue = 'mytravelsapp'
+    console.log("token_user",user);
+    let token = await jwt.sign(user,tokenvalue);
+    console.log("token->",token)
     return token;
 }
 

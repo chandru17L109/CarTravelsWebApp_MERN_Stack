@@ -1,8 +1,8 @@
 var express = require('express')
 var router = express.Router()
-const {protect,authorize_role} = require('../middleware/authenticate');
+const {protect,authorize_role} = require('../middleware/authenticate.js');
 
-const {insertdetail,findAlldetails,findOnedetail,deletedetail,updatedetail} = require('../controllers/CarKmPrice')
+const {insertdetail,findAlldetails,findOnedetail,deletedetail,updatedetail} = require('../controllers/CarKmPrice.js')
 
 router.route('/')
 .get(findAlldetails)

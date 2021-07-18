@@ -2,41 +2,14 @@ import React, { Component } from 'react'
 import '../App.css'
 import {Button} from 'react-bootstrap' 
 import {Link} from "react-router-dom";
-import AuthService from '../services/auth'
-import authHeader from '../services/auth-header';
+import * as actions from '../action/auth-action';
+import {connect} from 'react-redux';
+import logo from "../Assets/logo.JPG"
 
-export default class UserHeader extends Component {
-    constructor(){
-        super();
+class UserHeader extends Component {
+    constructor(props){
+        super(props);
         this.state = {navbarshow:"collapse navbar-collapse justify-content-end", ShowStatus : false}
-    }
-
-    logout(){
-        var current_user = AuthService.finduserid();
-        var current_user_id;
-        fetch('http://localhost:8010/api/v1/AllUsersLog/'+current_user,{
-            headers: authHeader()
-        })
-        .then(data =>data.json())
-        .then(res=>{
-            console.log("response",res);
-            current_user_id =  res[res.length - 1]._id
-            console.log("userlog",current_user_id)
-            fetch('http://localhost:8010/api/v1/AllUsersLog/'+current_user_id, {
-                method: 'PATCH',
-                headers:authHeader(),
-                body: JSON.stringify({loggedoutAt : new Date().toLocaleString(), status : "OUT"}),
-            })
-            .then(res=>{
-                console.log(res.status);
-                if(res.status === 200){
-                    console.log("logout successful")
-                    localStorage.removeItem('token');
-                    this.props.history.push("/");
-                    window.location.reload();
-                }
-            })
-        })
     }
  
     show(){
@@ -48,12 +21,18 @@ export default class UserHeader extends Component {
     }
 
     render() {
+      var message1 = (
+        <div class="alert alert-info mb-0" role="alert">
+           <p>CarTravels for a particular city(Eg: coimbatore). This site is designed for practice purpose.Try adminlogin also</p>
+           <p>For admin: admin@gmail.com password:admin1234</p>
+        </div>
+      )
         return (
             <div className="MainDiv">
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
               <div className="navbar-brand">
                 <Link to={'/'} className="linkcolor">
-                    <img alt="logo" src="https://yt3.ggpht.com/a/AATXAJyxJPOgMaAd69NNjLLzYBhyJmNT8PpQb3M4YS7jrA=s176-c-k-c0xffffffff-no-rj-mo" className="d-inline-block logoimg align-top"/>
+                    <img alt="logo" src={logo} className="d-inline-block logoimg align-top"/>
                     <span className="cartarvels">Car Travels</span>
                 </Link>
               </div>
@@ -64,18 +43,36 @@ export default class UserHeader extends Component {
 
                 <div className={this.state.navbarshow} id="navbarNavDropdown">
                     <ul className="navbar-nav">
-                        <Button variant="outline-info" className="m-2"><Link to={'/userlocalbookinglist'} className="linkcolor">Local Booking List </Link></Button>
-                        <Button variant="outline-info" className="m-2"><Link to={'/usertourbookinglist'} className="linkcolor">Tour Booking List</Link></Button>
-                        <Button variant="outline-primary" className="m-2" ><Link to={'/localnewbooking'} className="linkcolor">Local Package</Link></Button>
-                        <Button variant="outline-warning" className="m-2" ><Link to={'/tourpackagelist'} className="linkcolor">Tour Package</Link></Button>
-                        <Button variant="outline-secondary" className="m-2" ><Link to={'/carKilometerDetails'} className="linkcolor">Car Km/hr Details</Link></Button>
-                        <Button variant="outline-primary" className="m-2"><Link to={'/userlogdetails'} className="linkcolor">Log Details</Link></Button>
-                        <Button variant="outline-info" className="m-2"  onClick={this.logout.bind(this)}>Log Out</Button>
+                        <Button variant="outline-info" className="m-1"><Link to={'/userlocalbookinglist'} className="linkcolor">Local Booked</Link></Button>
+                        <Button variant="outline-info" className="m-1"><Link to={'/usertourbookinglist'} className="linkcolor">Tour Booked</Link></Button>
+                        <Button variant="outline-primary" className="m-1" ><Link to={'/localnewbooking'} className="linkcolor">Local Package</Link></Button>
+                        <Button variant="outline-warning" className="m-1" ><Link to={'/tourpackagelist'} className="linkcolor">Tour Package</Link></Button>
+                        <Button variant="outline-secondary" className="m-1" ><Link to={'/carKilometerDetails'} className="linkcolor">Car Details</Link></Button>
+                        <Button variant="outline-primary" className="m-1"><Link to={'/userlogdetails'} className="linkcolor">User Log</Link></Button>
+                        {/* <Button variant="outline-info" className="m-1"  onClick={this.logout.bind(this)}>Log Out</Button> */}
+                        
+                        <Button variant="outline-info" className="m-1"> <Link to = {'/'} onClick={()=>this.props.onUserLogout()}>Log Out</Link></Button>
+
                      </ul>
                 </div>
 
                 </nav>
+                {message1}
             </div>
         )
     }
 }
+const mapStateToProps = (state) => {
+    console.log('Inside Component ', state);
+    return {
+      authenticated: state.authReducer.authenticated
+    }
+  }
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+      onUserLogout: (user)=>dispatch(actions.login(false))
+    }
+  }
+  
+export default connect(mapStateToProps, mapDispatchToProps)(UserHeader);

@@ -21,8 +21,9 @@ export default class Tourbookinglist extends Component {
         });
     }
 
-    deletepreviousBooking(id){
-        fetch('http://localhost:8010/api/v1/cartourbookedusers/' + id, {
+    deletepreviousBooking(_id){
+        console.log("tourdeleteid",_id)
+        fetch('http://localhost:8010/api/v1/cartourbookedusers/' + _id, {
             headers:authHeader(),
             method: 'DELETE'
         })
@@ -49,15 +50,15 @@ export default class Tourbookinglist extends Component {
                 return (
                         <tr key={i}>
                             <th scope="row">{i+1}</th>
-                            {/* <td>{previousBooking.name}</td>
-                            <td>{previousBooking.phoneNumber}</td> */}
+                            <td>{previousBooking.name}</td>
+                            <td>{previousBooking.phoneNumber}</td> 
                             <td>{previousBooking.packagename}</td>
                             <td>{previousBooking.carType}</td>
                             <td>{previousBooking.noofdays}</td>
                             <td>{previousBooking.packageprice}</td>
                             <td>{previousBooking.packageDate}</td>
                             <td>
-                                <button type="button" onClick={this.deletepreviousBooking.bind(this, previousBooking.packagename)} className="btn btn-danger m-1"> Delete </button>
+                                <button type="button" onClick={this.deletepreviousBooking.bind(this, previousBooking._id)} className="btn btn-danger m-1"> Delete </button>
                                 {/* <button type="button" className="btn btn-warning m-1"> <Link to={'updateCarBookedData/' + previousBooking.name}>Update</Link> </button> */}
                             </td>
                         </tr>
@@ -72,6 +73,8 @@ export default class Tourbookinglist extends Component {
             <thead className="thead-dark">
                 <tr>
                     <th scope="col">#</th>
+                    <th scope="col">Booked by</th>
+                    <th scope="col">Phone No</th>
                     <th scope="col">Package Name</th>
                     <th scope="col">Car Type</th>
                     <th scope="col">Days</th>

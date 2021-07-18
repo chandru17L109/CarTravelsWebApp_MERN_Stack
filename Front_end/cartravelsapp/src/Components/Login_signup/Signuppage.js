@@ -16,7 +16,6 @@ export default class Signuppage extends Component {
             this.setState({usernameCheck:"form-control is-valid",username:username1})
         }
         else {this.setState({usernameCheck:"form-control is-invalid"})}
-        // console.log(this.state.username, event.target.value)
     }
 
     emailidHandler(event) {
@@ -26,7 +25,6 @@ export default class Signuppage extends Component {
             this.setState({emailidCheck:"form-control is-valid",emailid:email1})
         }
         else{this.setState({emailidCheck:"form-control is-invalid"})}
-        // console.log(this.state.emailid,  event.target.value)
     }
 
     phonenumberHandler(event) {
@@ -36,14 +34,12 @@ export default class Signuppage extends Component {
             this.setState({phonenumberCheck:"form-control is-valid",phonenumber:phoneNumber1})
         }
         else{this.setState({phonenumberCheck:"form-control is-invalid"})}
-        // console.log(this.state.phonenumber ,  event.target.value)
     }
 
     passwordHandler(event) {
         let password1 = event.target.value;
         if(password1.length < 7) {this.setState({passwordCheck:"form-control is-invalid"})}
         else {this.setState({passwordCheck:"form-control is-valid",password:event.target.value})}
-        // console.log(this.state.password ,  event.target.value)
     }
     
     signupuser(event){
@@ -52,21 +48,18 @@ export default class Signuppage extends Component {
             fetch('http://localhost:8010/api/v1/signedupuserdetails', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({username: this.state.username, emailid: this.state.emailid, phonenumber: this.state.phonenumber, password : this.state.password}),
+                body: JSON.stringify({username: this.state.username, emailid: this.state.emailid, phonenumber: this.state.phonenumber, password : this.state.password, signeddate : new Date().toLocaleString()}),
             })
             .then(data =>data.json())
             .then(res=>{
-                console.log(res);
-                console.log(this.state.username, this.state.emailid,  this.state.phonenumber, this.state.password);
-                if(res.success === true){
+                   if(res.success === true){
                     event.target.reset();
                     alert(`Successfully signed up ✔ \nPlease Login to Continue 😊`)
                     this.props.history.push('/login')
                 }else{
-                    // console.log( res.message)
-                    var errormsg = res.message.split(":")
-                    errormsg.splice(1,2)
-                    alert(errormsg)
+                    // var errormsg = res.message.split(":")
+                    // errormsg.splice(1,2)
+                    alert(res.message)
                 }
             })
         }else{

@@ -1,5 +1,5 @@
-const CarKmPriceData = require('../model/CarKmPrice')
-const asyncHandler = require('../middleware/asyncHandler');
+const CarKmPriceData = require('../model/CarKmPrice.js')
+const asyncHandler = require('../middleware/asyncHandler.js');
 
 const insertdetail = asyncHandler(async(req,res,next) => {
     let cardetail_postdata = await CarKmPriceData.create(req.body);

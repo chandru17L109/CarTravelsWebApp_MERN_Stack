@@ -1,5 +1,5 @@
-const Car_user_AttendancData = require('../model/Attendance')
-const asyncHandler = require('../middleware/asyncHandler');
+const Car_user_AttendancData = require('../model/Attendance.js')
+const asyncHandler = require('../middleware/asyncHandler.js');
 
 const insertuserlog = async(req,res,next) => {
     try{

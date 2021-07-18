@@ -1,9 +1,9 @@
 var express = require('express')
 var router = express.Router()
-const {protect,authorize_role} = require('../middleware/authenticate');
+const {protect,authorize_role} = require('../middleware/authenticate.js');
 // const query_find = require('../middleware/query_params');
 
-const {findAllusers,insertuser,findOneUser,deleteuser,updateuser} = require('../controllers/LocalBooking')
+const {findAllusers,insertuser,findOneUser,deleteuser,updateuser} = require('../controllers/LocalBooking.js')
 // const LocalTourDetails = require('../model/Localbooking');
 
 router.route('/')
@@ -11,7 +11,7 @@ router.route('/')
 .post(protect,authorize_role('user'),insertuser)
 
 router.route('/:user')
-.get(protect,authorize_role('user','admin'),findOneUser)
+.get(findOneUser)
 
 router.route('/:_id')
 .delete(protect,authorize_role('user'),deleteuser)

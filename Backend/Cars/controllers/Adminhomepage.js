@@ -1,5 +1,5 @@
-const adminHomePageDataSchema = require('../model/Adminhomepage')
-const asyncHandler = require('../middleware/asyncHandler');
+const adminHomePageDataSchema = require('../model/Adminhomepage.js')
+const asyncHandler = require('../middleware/asyncHandler.js');
 
 const insertpackage = async(req,res,next) => {
     try{
@@ -15,14 +15,24 @@ const findAllpackages = asyncHandler(async(req, res)=>{
 
 const findonepackage = async (req,res,next)=>{
     try{
-        let searchData=await adminHomePageDataSchema.find({packagenameid : req.params.packagenameid});
-        if(searchData.length !=0){
-            res.json(searchData[0]);
-            console.log(searchData[0]);}
-        else next({message:"no record found"});
+        if(req.params.packagenameid.length === 1){
+            let noofdays = req.params.packagenameid;
+            let searchData=await adminHomePageDataSchema.find({noofdays : noofdays});
+            if(searchData.length !=0){
+                res.json(searchData);
+                console.log(searchData);}
+            else next({message:"no record found"});
+        }else{
+            let searchData=await adminHomePageDataSchema.find({packagenameid : req.params.packagenameid});
+            if(searchData.length !=0){
+                res.json(searchData[0]);
+                console.log(searchData[0]);}
+            else next({message:"no record found"});
+        }
     }
     catch(err) {next(err);}
 }
+
 const deletepackage = async (req,res,next)=>{
     try{
         let Deletedata=await adminHomePageDataSchema.deleteOne({packagenameid:req.params.packagenameid});
@@ -49,5 +59,16 @@ module.exports = {insertpackage,findAllpackages,findonepackage,deletepackage,upd
 //         let allHomeMainData =await adminHomePageDataSchema.find();
 //         res.json(allHomeMainData);
 //         console.log(allHomeMainData);}
+//     catch(err) {next(err);}
+// }
+
+// const findonepackageBasedOnDays = async (req,res,next)=>{
+//     try{
+//         let searchData=await adminHomePageDataSchema.find({noofdays : req.params.noofdays});
+//         if(searchData.length !=0){
+//             res.json(searchData);
+//             console.log(searchData);}
+//         else next({message:"no record found"});
+//     }
 //     catch(err) {next(err);}
 // }

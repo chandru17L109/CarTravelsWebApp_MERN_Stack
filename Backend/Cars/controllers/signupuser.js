@@ -1,5 +1,5 @@
-const signupUsersData = require('../model/signupuser')
-const asyncHandler = require('../middleware/asyncHandler');
+const signupUsersData = require('../model/signupuser.js')
+const asyncHandler = require('../middleware/asyncHandler.js');
 
 const insertuserdata = asyncHandler(async(req,res,next) => {
     let postdata = await signupUsersData.create(req.body);
@@ -42,7 +42,7 @@ const loginUser = asyncHandler(async(req, res)=>{
     if(!isMatch) throw new Error('Invalid username/password!!')
     console.log("Generate Token -->".blue)
     const token = await Signeduser.generateToken();
-    console.log(token.green);
+    console.log("Generated token",token.green);
     res.json({success:true,token})
 })
 

@@ -1,4 +1,4 @@
-const asyncHandler = require('./asyncHandler')
+const asyncHandler = require('./asyncHandler.js')
 const jwt = require('jsonwebtoken');
 
 const protect =  asyncHandler(async (req, res, next)=> {
@@ -7,7 +7,8 @@ const protect =  asyncHandler(async (req, res, next)=> {
     if (authHeader) {
         const token = authHeader.split(' ')[1];
         console.log('token after split: '.bgBlue + token);
-        let user = await jwt.verify(token, process.env.JSON_SECRET_KEY);
+        let tokenvalue = 'mytravelsapp'
+        let user = await jwt.verify(token,tokenvalue);
         if(!user) throw new Error('Invalid token!!') 
         console.log("user".bgBlue,user);
         req.user = user;

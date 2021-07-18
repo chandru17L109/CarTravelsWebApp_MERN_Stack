@@ -55,6 +55,8 @@ export default class AllTourBooked extends Component {
                         <tr key={i}>
                             <th scope="row">{i+1}</th>
                             <td>{previousBooking.usernameid}</td>
+                            <td>{previousBooking.name}</td>
+                            <td>{previousBooking.phoneNumber}</td>
                             <td>{previousBooking.packagename}</td>
                             <td>{previousBooking.carType}</td>
                             <td>{previousBooking.noofdays}</td>
@@ -70,12 +72,17 @@ export default class AllTourBooked extends Component {
         <div className="MainDiv">
              <div className="bookinglist">
                 <form class="form-inline">
-                <h2>Tour Package Booking List</h2>
-                <div class="form-group ml-auto">
-                    <input type="text"  ref = {this.searchinput} className="form-control m-2 " id="inputsearch" placeholder="Search By User Id"/>
-                </div>
-                <button type="submit" className="btn btn-warning m-2" onClick={this.search.bind(this)}>Search</button>
-                <button type="submit" className="btn btn-secondary m-2" onClick={this.allbooking.bind(this)}>All Bookings</button>
+
+                    <h2 className="col-12 col-sm-12 col-md-6 col-xl-6 heading-book">Tour Package Booked List</h2>
+
+                    <div className="col-12 col-sm-12 col-md-6 col-xl-6">
+                        <div class="form-group">
+                            <input type="text"  ref = {this.searchinput} className="form-control m-2 " id="inputsearch" placeholder="Search By User Id" autocomplete="off"/>
+                            <button type="submit" className="btn btn-warning m-2" onClick={this.search.bind(this)}>Search</button>
+                            <button type="submit" className="btn btn-secondary m-2" onClick={this.allbooking.bind(this)}>All Bookings</button>
+                        </div>
+                    </div>
+
                 </form>
             </div>
 
@@ -84,6 +91,8 @@ export default class AllTourBooked extends Component {
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">User Id</th>
+                    <th scope="col">Booked by</th>
+                    <th scope="col">Phone No.</th>
                     <th scope="col">Package Name</th>
                     <th scope="col">Car Type</th>
                     <th scope="col">Days</th>
@@ -100,28 +109,3 @@ export default class AllTourBooked extends Component {
     }
 }
 
-
-
-{/* <td>
-<button type="button" onClick={this.deletepreviousBooking.bind(this, previousBooking.packagename)} className="btn btn-danger m-1"> Delete </button>
-<button type="button" className="btn btn-warning m-1"> <Link to={'updateCarBookedData/' + previousBooking.name}>Update</Link> </button>
-</td> */}
-
-// deletepreviousBooking(packagename){
-//     fetch('http://localhost:8010/api/v1/cartourbookedusers/' + packagename, {
-//         headers:authHeader(),
-//         method: 'DELETE'
-//     })
-//     .then(res=>res.json())
-//     .then(data=>{
-//         console.log(data);
-//         this.setState({message: 'Record successfully deleted'})
-//         fetch('http://localhost:8010/api/v1/cartourbookedusers',{
-//             headers:authHeader()
-//         })
-//         .then(res=>res.json())
-//         .then(data=>{
-//             this.setState({tourpreviousBookingList: data})
-//         });
-//     });
-// }

@@ -1,16 +1,11 @@
 const query_find = (model) =>  async (req, res, next)=> {
-
     const reqQuery = {...req.query};
     console.log('Req Query object: ', reqQuery)
     const removeFields = ['select', 'sort'];
     removeFields.forEach(param=> delete reqQuery[param])
     console.log('Req query object after deletion: ', reqQuery);
     let queryStr = JSON.stringify(reqQuery);
-    queryStr = queryStr.replace(/\b(gt|gte|lt|lte|in)\b/g, match => `$${match}`);
-    // console.log("querystring",queryStr)
-    // console.log("querystring",queryStr[queryStr[0]])
-    // let query = model.find({"packageprice" : {$gt : 5000} })
-     let query = model.find(JSON.parse(queryStr))
+    let query = model.find(JSON.parse(queryStr))
     //  let query = model.find(queryStr)
     if(req.query.select){
         const fields = req.query.select.split(',').join(' ');
@@ -22,9 +17,9 @@ const query_find = (model) =>  async (req, res, next)=> {
         console.log("sort",sortBy);
         query = query.sort(sortBy)
     }
-    // else{
-    //     query= query.sort('-packageDate')
-    // }
+    else{
+         query= query.sort('noofdays')
+    }
     const results = await query;
     res.advancedResults = {
         success: true,
@@ -34,3 +29,9 @@ const query_find = (model) =>  async (req, res, next)=> {
     next();
 }
 module.exports = query_find;
+
+
+  // queryStr = queryStr.replace(/\b(gt|gte|lt|lte|in)\b/g, match => `$${match}`);
+    // console.log("querystring",queryStr)
+    // console.log("querystring",queryStr[queryStr[0]])
+    // let query = model.find({"packageprice" : {$gt : 5000} })
